@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Income Graph</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+        /* Universal */
+
+        body, text {
+          font-family: "Open Sans", Helvetica, sans-serif;
+          margin: 0;
+        }
+
+        svg {
+          display: block;
+          margin: 0 auto;
+        }
+
+        #main {
+          width: 900px;
+          margin: 0 auto;
+        }
+        
+        p {
+          font-size: 14px;
+          color: gray;
+          padding-right: 55px;
+        }
+
+        /* Graphs */
+
+        .axis path {
+          opacity: 0;
+        }
+
+        .axis text {
+          fill: gray;
+        }
+
+        .x text {
+          font-size: 12px;
+        }
+
+        .legend text {
+          text-anchor: end;
+          font-size: 10px;
+          fill: gray;
+        }
+
+        .label {
+          font-size: 10px;
+          text-anchor: middle;
+        }
+
+        rect {
+          opacity: 1;
+        }
+
+        .line {
+          fill: none;
+          opacity: 0.8;
+        }
+
+        .dashline {
+          stroke: gray;
+          stroke-dasharray: 2, 4;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var allData = [{"label":"199193","univ_name":"North Carolina State University","instate_ct":247,"outofstate_ct":124,"instate":{"num_pub":157,"num_priv":3,"num_cc":55,"num_other":32},"outofstate":{"num_pub":72,"num_priv":20,"num_other":32}},{"label":"186380_req","univ_name":"Rutgers University-New Brunswick","instate_ct":675,"outofstate_ct":948,"instate":{"num_pub":477,"num_priv":72,"num_cc":89,"num_other":37},"outofstate":{"num_pub":554,"num_priv":231,"num_other":163}},{"label":"196097_req","univ_name":"Stony Brook University","instate_ct":424,"outofstate_ct":657,"instate":{"num_pub":326,"num_priv":39,"num_cc":33,"num_other":26},"outofstate":{"num_pub":496,"num_priv":107,"num_other":54}},{"label":"100751","univ_name":"University of Alabama","instate_ct":382,"outofstate_ct":3900,"instate":{"num_pub":156,"num_priv":54,"num_cc":124,"num_other":48},"outofstate":{"num_pub":2310,"num_priv":931,"num_other":659}},{"label":"106397","univ_name":"University of Arkansas","instate_ct":225,"outofstate_ct":788,"instate":{"num_pub":162,"num_priv":21,"num_cc":16,"num_other":26},"outofstate":{"num_pub":483,"num_priv":204,"num_other":101}},{"label":"110635_req","univ_name":"University of California-Berkeley","instate_ct":655,"outofstate_ct":471,"instate":{"num_pub":343,"num_priv":46,"num_cc":161,"num_other":105},"outofstate":{"num_pub":212,"num_priv":162,"num_other":97}},{"label":"110653_req","univ_name":"University of California-Irvine","instate_ct":767,"outofstate_ct":172,"instate":{"num_pub":330,"num_priv":20,"num_cc":322,"num_other":95},"outofstate":{"num_pub":77,"num_priv":40,"num_other":55}},{"label":"110671_req","univ_name":"University of California-Riverside","instate_ct":994,"outofstate_ct":72,"instate":{"num_pub":477,"num_priv":55,"num_cc":399,"num_other":63},"outofstate":{"num_pub":21,"num_priv":32,"num_other":19}},{"label":"110680_req","univ_name":"University of California-San Diego","instate_ct":1029,"outofstate_ct":302,"instate":{"num_pub":610,"num_priv":85,"num_cc":248,"num_other":86},"outofstate":{"num_pub":146,"num_priv":112,"num_other":44}},{"label":"201885_req","univ_name":"University of Cincinnati","instate_ct":554,"outofstate_ct":815,"instate":{"num_pub":408,"num_priv":79,"num_cc":22,"num_other":45},"outofstate":{"num_pub":491,"num_priv":204,"num_other":120}},{"label":"126614_req","univ_name":"University of Colorado-Boulder","instate_ct":463,"outofstate_ct":1083,"instate":{"num_pub":254,"num_priv":17,"num_cc":154,"num_other":38},"outofstate":{"num_pub":606,"num_priv":362,"num_other":115}},{"label":"139959_req","univ_name":"University of Georgia","instate_ct":298,"outofstate_ct":587,"instate":{"num_pub":203,"num_priv":69,"num_cc":1,"num_other":25},"outofstate":{"num_pub":287,"num_priv":233,"num_other":67}},{"label":"155317_req","univ_name":"University of Kansas","instate_ct":415,"outofstate_ct":1004,"instate":{"num_pub":304,"num_priv":22,"num_cc":28,"num_other":61},"outofstate":{"num_pub":613,"num_priv":213,"num_other":178}},{"label":"166629_req","univ_name":"University of Massachusetts-Amherst","instate_ct":353,"outofstate_ct":784,"instate":{"num_pub":238,"num_priv":62,"num_cc":36,"num_other":17},"outofstate":{"num_pub":504,"num_priv":230,"num_other":50}},{"label":"181464","univ_name":"University of Nebraska-Lincoln","instate_ct":546,"outofstate_ct":875,"instate":{"num_pub":445,"num_priv":55,"num_cc":20,"num_other":26},"outofstate":{"num_pub":646,"num_priv":104,"num_other":125}},{"label":"215293","univ_name":"University of Pittsburgh","instate_ct":327,"outofstate_ct":906,"instate":{"num_pub":211,"num_priv":51,"num_cc":37,"num_other":28},"outofstate":{"num_pub":559,"num_priv":210,"num_other":137}},{"label":"218663_req","univ_name":"University of South Carolina-Columbia","instate_ct":418,"outofstate_ct":1726,"instate":{"num_pub":313,"num_priv":34,"num_cc":20,"num_other":51},"outofstate":{"num_pub":876,"num_priv":452,"num_other":398}}];
+
+            // Defining scales...
+
+          var totalWidth = 900,
+              totalHeight = 980;
+  
+          var topMargin = 110,
+              chartWidth = 250,
+              chartHeight = 800,
+              col1 = 190,
+              col2 = 440,
+              middleSpace = 0.1,
+              xMax = 2300,
+              barWidth = 18,
+              univ_ids = allData.map(function(d) { return d.label; }),
+              labels = ['Public HS', 'Private HS', 'Community College', 'Other'],
+              bands_in = ['num_pub', 'num_priv', 'num_cc', 'num_other'],
+              bands_out = ['num_pub', 'num_priv', 'num_other'];
+  
+          var xScale = d3.scaleLinear()
+              .domain([0, xMax])
+              .range([0, chartWidth]);
+  
+          var yScale = d3.scaleBand()
+              .domain(univ_ids)
+              .rangeRound([0, chartHeight])
+              .paddingInner(0.15);  // space between bars of bars
+  
+          var colorScale = d3.scaleOrdinal()
+              .domain(bands_in)
+              .range(['#42a9c6', '#d16822', '#30af37', '#9959da']);
+  
+          // Attaching things...
+  
+          var svg = d3.select('#visit_count').append('svg')
+              .attr('width', totalWidth)
+              .attr('height', totalHeight);
+  
+          var g_univ = svg.append('g')
+              .attr('transform', 'translate(0, ' + topMargin + ')');
+  
+          g_univ.selectAll('text')
+              .data(allData)
+              .enter()
+              .append('text')
+              .text(function(d) { return d.univ_name; })
+              .style('font-size', '13px')
+              .attr('dy', '0.35em')
+              .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2) + ')'; });
+  
+          var g_instate = svg.append('g')
+              .attr('transform', 'translate(' + col1 + ', ' + topMargin + ')');
+  
+          g_instate.append('text')
+              .style('font-size', '13px')
+              .style('font-weight', 600)
+              .style('text-anchor', 'middle')
+              .text('In-State')
+              .attr('transform', 'translate(' + chartWidth / 2 + ', -15)');
+  
+          var bars = g_instate.append('g')  // add left bars
+              .selectAll('g')
+              .data(allData)
+              .enter()
+              .append('g')
+              .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2 - barWidth / 2) + ')'; });
+  
+          bars.selectAll('rect')
+              .data(function(d) {
+                  return bands_in.map(function(k, i) {
+                      var offset = 0;
+                      while (i > 0) {
+                          offset += d.instate[bands_in[i - 1]];
+                          i -= 1;
+                      }
+                      return {
+                          band: k,
+                          num: d.instate[k],
+                          offset: offset,
+                          label: d.label
+                      }
+                  });
+              })
+              .enter()
+              .append('rect')
+              .attr('width', function(d) { return xScale(d.num); })
+              .attr('height', barWidth)
+              .attr('x', function(d) { return xScale(xMax - d.offset - d.num) - middleSpace; })
+              .attr('fill', function(d) { return colorScale(d.band); });
+  
+          bars.append('text')
+              .classed('label', true)
+              .attr('x', function(d) { return chartWidth - xScale(d.instate_ct) - 3; })
+              .attr('y', barWidth / 2)
+              .attr('dy', '0.35em')
+              .style('text-anchor', 'end')
+              .text(function(d) { return d.instate_ct.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); });
+  
+          var g_outofstate = svg.append('g')
+              .attr('transform', 'translate(' + col2 + ', ' + topMargin + ')');
+  
+          g_outofstate.append('text')
+              .style('font-size', '13px')
+              .style('font-weight', 900)
+              .style('text-anchor', 'middle')
+              .text('Out-of-State')
+              .attr('transform', 'translate(' + chartWidth / 2 + ', -15)');
+  
+          var bars2 = g_outofstate.append('g')  // add right bars
+              .selectAll('g')
+              .data(allData)
+              .enter()
+              .append('g')
+              .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2 - barWidth / 2) + ')'; });
+  
+          bars2.selectAll('rect')
+              .data(function(d) {
+                  return bands_out.map(function(k, i) {
+                      var offset = 0;
+                      while (i > 0) {
+                          offset += d.outofstate[bands_out[i - 1]];
+                          i -= 1;
+                      }
+                      return {
+                          band: k,
+                          num: d.outofstate[k],
+                          offset: offset,
+                          label: d.label
+                      }
+                  });
+              })
+              .enter()
+              .append('rect')
+              .attr('width', function(d) { return xScale(d.num); })
+              .attr('height', barWidth)
+              .attr('x', function(d) { return xScale(d.offset) - middleSpace; })
+              .attr('fill', function(d) { return colorScale(d.band); });
+  
+          bars2.append('text')
+              .classed('label', true)
+              .attr('x', function(d) { return xScale(d.outofstate_ct) + 3; })
+              .attr('y', barWidth / 2)
+              .attr('dy', '0.35em')
+              .style('text-anchor', 'start')
+              .text(function(d) { return d.outofstate_ct.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); });
+  
+          g_outofstate.append('line')  // center line at $0k
+              .classed('dashline', true)
+              .attr('x1', 0)
+              .attr('y1', 0)
+              .attr('x2', 0)
+              .attr('y2', chartHeight);
+  
+          g_outofstate.append('text')
+              .classed('label', true)
+              .attr('transform', 'translate(0, -5)')
+              .text('0');
+  
+          var legend = svg.append('g')  // legend
+              .selectAll('g')
+              .data(labels)
+              .enter()
+              .append('g')
+              .attr('transform', function(d, i) { return 'translate(0, ' + i * (barWidth + 1) + ')'; });
+  
+          legend.append('rect')
+              .attr('width', barWidth)
+              .attr('height', barWidth)
+              .style('fill', colorScale);
+  
+          legend.append('text')
+              .style('font-size', 12)
+              .style('fill', 'gray')
+              .attr('x', barWidth + 5)
+              .attr('y', barWidth / 2)
+              .attr('dy', '0.35em')
+              .text(function(d) { return d; });
+            
+        });
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div id="visit_count"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Race Graph</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+        
+        /* Universal */
+
+        body, text {
+          font-family: "Open Sans", Helvetica, sans-serif;
+          margin: 0;
+        }
+
+        svg {
+          display: block;
+          margin: 0 auto;
+        }
+
+        #main {
+          width: 920px;
+          margin: 0 auto;
+        }
+
+        /* Buttons */
+
+        .btn-wrapper {
+          padding-left: 405px;
+          padding-right: 15px;
+        }
+
+        .btn-set {
+          display: inline-block;
+        }
+
+        .btn {
+          border: 1px solid #F4633A;
+          border-radius: 5px;
+          margin: 5px 0;
+          padding: 5px;
+          font-size: 13px;
+          color: #F4633A;
+          cursor: pointer;
+        }
+
+        .btn:hover,
+        .active {
+          color: #FFFFFF;
+          background-color: #F4633A;
+        }
+
+        /* Graphs */
+
+        .axis path {
+          opacity: 0;
+        }
+
+        .axis text {
+          fill: gray;
+        }
+
+        .x text {
+          font-size: 12px;
+        }
+
+        .legend text {
+          text-anchor: end;
+          font-size: 10px;
+          fill: gray;
+        }
+
+        .label {
+          font-size: 10px;
+          text-anchor: middle;
+        }
+
+        rect {
+          opacity: 1;
+        }
+        
+        p {
+          font-size: 14px;
+          color: gray;
+          padding-right: 175px;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var allData = {"pub_out":[{"label":"199193","univ_name":"North Carolina State University","visit_ct":70,"nonvisit_ct":5185,"visit":{"pct_white":57.103237259987075,"pct_asian":10.241915031129073,"pct_hispanic":13.459540385984145,"pct_black":15.867237161813913,"pct_amerindian":0.22007150278566345,"pct_other":3.1079986583001284},"nonvisit":{"pct_white":52.6820554165424,"pct_asian":4.904491823364993,"pct_hispanic":17.76157972265668,"pct_black":21.79951328617871,"pct_amerindian":0.3031723267245434,"pct_other":2.549187424532678}},{"label":"186380","univ_name":"Rutgers University-New Brunswick","visit_ct":442,"nonvisit_ct":6638,"visit":{"pct_white":54.01178339516753,"pct_asian":15.584724968435095,"pct_hispanic":17.23700823633995,"pct_black":9.845491829485571,"pct_amerindian":0.25778527840433924,"pct_other":3.0632062921675165},"nonvisit":{"pct_white":41.173408622802114,"pct_asian":5.604376643575797,"pct_hispanic":35.10029145937381,"pct_black":15.124206074660732,"pct_amerindian":0.4553833024696028,"pct_other":2.542333897117947}},{"label":"196097","univ_name":"Stony Brook University","visit_ct":407,"nonvisit_ct":3613,"visit":{"pct_white":61.47176171149481,"pct_asian":10.118834697668019,"pct_hispanic":12.810930728485932,"pct_black":12.882472312031368,"pct_amerindian":0.19897502923574328,"pct_other":2.517025521084129},"nonvisit":{"pct_white":52.06962661348107,"pct_asian":3.7123049745575467,"pct_hispanic":18.69052215760069,"pct_black":22.60801317581123,"pct_amerindian":0.28081479691537725,"pct_other":2.638718281634086}},{"label":"100751","univ_name":"University of Alabama","visit_ct":1711,"nonvisit_ct":13255,"visit":{"pct_white":56.91178975390962,"pct_asian":7.2530737640282865,"pct_hispanic":18.271907118039127,"pct_black":13.886312962133527,"pct_amerindian":0.4200337709254621,"pct_other":3.2568826309639736},"nonvisit":{"pct_white":49.113451123003976,"pct_asian":4.548070264604655,"pct_hispanic":26.177277651465065,"pct_black":16.780367228194947,"pct_amerindian":0.7758886163772214,"pct_other":2.604945116354136}},{"label":"106397","univ_name":"University of Arkansas","visit_ct":329,"nonvisit_ct":6301,"visit":{"pct_white":56.883598969834445,"pct_asian":7.301957681760294,"pct_hispanic":20.254136435179852,"pct_black":10.754981831898746,"pct_amerindian":1.4405960672778892,"pct_other":3.364729014048775},"nonvisit":{"pct_white":39.954812776984184,"pct_asian":5.6788896355733804,"pct_hispanic":34.4313529529576,"pct_black":16.48485676035247,"pct_amerindian":0.8590402318083115,"pct_other":2.591047642324046}},{"label":"110635","univ_name":"University of California-Berkeley","visit_ct":207,"nonvisit_ct":10916,"visit":{"pct_white":52.441002801233346,"pct_asian":14.290572539852079,"pct_hispanic":15.59848652788134,"pct_black":13.717982305878559,"pct_amerindian":0.4048185244150662,"pct_other":3.547137300739609},"nonvisit":{"pct_white":51.858701960421214,"pct_asian":4.028691175546975,"pct_hispanic":21.791532287392616,"pct_black":18.73635029237002,"pct_amerindian":0.7729087930286158,"pct_other":2.811815491240559}},{"label":"110653","univ_name":"University of California-Irvine","visit_ct":74,"nonvisit_ct":7521,"visit":{"pct_white":43.094809490697116,"pct_asian":15.65666083950168,"pct_hispanic":24.043879202219955,"pct_black":8.372921229293526,"pct_amerindian":0.5198957608999396,"pct_other":8.31183347738778},"nonvisit":{"pct_white":54.292998325612274,"pct_asian":4.903274209059267,"pct_hispanic":20.30788536546075,"pct_black":16.66816674070422,"pct_amerindian":0.8695954620675516,"pct_other":2.9580798970959377}},{"label":"110671","univ_name":"University of California-Riverside","visit_ct":21,"nonvisit_ct":6478,"visit":{"pct_white":36.62042935788639,"pct_asian":12.224439262446811,"pct_hispanic":30.329110272375413,"pct_black":12.979301391927303,"pct_amerindian":1.468855927110128,"pct_other":6.377863788253955},"nonvisit":{"pct_white":47.76510340867628,"pct_asian":4.890477069062947,"pct_hispanic":27.718721119661506,"pct_black":16.08090342042492,"pct_amerindian":0.6886189644487946,"pct_other":2.8561760177255504}},{"label":"110680","univ_name":"University of California-San Diego","visit_ct":145,"nonvisit_ct":8659,"visit":{"pct_white":51.98640887993137,"pct_asian":16.533739918108633,"pct_hispanic":16.267761548518575,"pct_black":9.161643671400583,"pct_amerindian":0.4379277662686981,"pct_other":5.612518215772143},"nonvisit":{"pct_white":49.85664247948933,"pct_asian":4.753565744458461,"pct_hispanic":25.23363983066157,"pct_black":16.68459116136632,"pct_amerindian":0.6626938093997127,"pct_other":2.8088669746246033}},{"label":"201885","univ_name":"University of Cincinnati","visit_ct":401,"nonvisit_ct":8717,"visit":{"pct_white":54.8278339538682,"pct_asian":12.46545704403639,"pct_hispanic":14.642532382104056,"pct_black":14.491477245615924,"pct_amerindian":0.25084968514274575,"pct_other":3.321849689232681},"nonvisit":{"pct_white":46.53544994436493,"pct_asian":5.595207824021982,"pct_hispanic":28.671436934316876,"pct_black":16.311528924303186,"pct_amerindian":0.4571884826337975,"pct_other":2.4291878903592297}},{"label":"126614","univ_name":"University of Colorado-Boulder","visit_ct":574,"nonvisit_ct":12821,"visit":{"pct_white":56.111319400962614,"pct_asian":12.594039696027924,"pct_hispanic":20.370525442341034,"pct_black":7.0843079078035105,"pct_amerindian":0.34018913564363784,"pct_other":3.49961841722128},"nonvisit":{"pct_white":48.826247653318426,"pct_asian":5.071688103655726,"pct_hispanic":26.510314302758736,"pct_black":15.873258412332179,"pct_amerindian":0.7993519834546955,"pct_other":2.9191395444802395}},{"label":"139959","univ_name":"University of Georgia","visit_ct":249,"nonvisit_ct":9333,"visit":{"pct_white":54.61298293332312,"pct_asian":11.594422203919015,"pct_hispanic":19.8224376041527,"pct_black":10.434807592851532,"pct_amerindian":0.33271400386921296,"pct_other":3.2026356618844205},"nonvisit":{"pct_white":46.86209513067917,"pct_asian":4.959275229757393,"pct_hispanic":27.886644613624746,"pct_black":16.805850704115574,"pct_amerindian":0.756749445808432,"pct_other":2.72938487601468}},{"label":"155317","univ_name":"University of Kansas","visit_ct":438,"nonvisit_ct":8090,"visit":{"pct_white":62.51244489119953,"pct_asian":8.431421293644188,"pct_hispanic":15.805282038163933,"pct_black":9.20915943992285,"pct_amerindian":0.5602452829508894,"pct_other":3.481447054118611},"nonvisit":{"pct_white":44.09363284898566,"pct_asian":5.735843802462918,"pct_hispanic":33.60864597515193,"pct_black":12.760392861460343,"pct_amerindian":1.1146461611118332,"pct_other":2.686838350827314}},{"label":"166629","univ_name":"University of Massachusetts-Amherst","visit_ct":496,"nonvisit_ct":8797,"visit":{"pct_white":57.321609144867004,"pct_asian":13.103916088308262,"pct_hispanic":17.532770153565934,"pct_black":9.151022202681908,"pct_amerindian":0.2548754828376723,"pct_other":2.635806927739221},"nonvisit":{"pct_white":43.608191482472854,"pct_asian":5.650030888691525,"pct_hispanic":30.0033535618419,"pct_black":17.48868320586332,"pct_amerindian":0.5657215404547326,"pct_other":2.6840193206756657}},{"label":"181464","univ_name":"University of Nebraska-Lincoln","visit_ct":420,"nonvisit_ct":6003,"visit":{"pct_white":61.14909864614757,"pct_asian":7.149477549949722,"pct_hispanic":17.378131421326454,"pct_black":10.668182281875282,"pct_amerindian":0.6187790553636748,"pct_other":3.036331045337295},"nonvisit":{"pct_white":55.1882968002265,"pct_asian":3.0523920588753573,"pct_hispanic":24.018125318027113,"pct_black":14.45236473576773,"pct_amerindian":0.6681044297093257,"pct_other":2.620716657393972}},{"label":"215293","univ_name":"University of Pittsburgh","visit_ct":433,"nonvisit_ct":7316,"visit":{"pct_white":59.03265435091714,"pct_asian":12.15372169166317,"pct_hispanic":14.744305645596238,"pct_black":10.90889032953982,"pct_amerindian":0.2258129538731416,"pct_other":2.9346150284104855},"nonvisit":{"pct_white":49.3968381887841,"pct_asian":3.829143143319784,"pct_hispanic":24.632858703338027,"pct_black":19.07477286481744,"pct_amerindian":0.4846700062259459,"pct_other":2.5817170935147025}},{"label":"218663","univ_name":"University of South Carolina-Columbia","visit_ct":727,"nonvisit_ct":11769,"visit":{"pct_white":60.54675626011019,"pct_asian":8.967389228929171,"pct_hispanic":14.592132416624787,"pct_black":12.295294816706662,"pct_amerindian":0.30412686871525874,"pct_other":3.2943004089139274},"nonvisit":{"pct_white":49.2082610338194,"pct_asian":5.043312229356633,"pct_hispanic":26.231719180163363,"pct_black":16.448290595490466,"pct_amerindian":0.5144149330838109,"pct_other":2.5540020280863325}}],"pub_in":[{"label":"199193","univ_name":"North Carolina State University","visit_ct":143,"nonvisit_ct":361,"visit":{"pct_white":56.18137744189362,"pct_asian":2.694375042622707,"pct_hispanic":11.86864146708907,"pct_black":23.065859056782745,"pct_amerindian":2.7346728745993465,"pct_other":3.455074117012505},"nonvisit":{"pct_white":52.15377413229243,"pct_asian":2.6565302247072475,"pct_hispanic":12.828687097795125,"pct_black":28.166868868024054,"pct_amerindian":0.6682535077539825,"pct_other":3.525886169427159}},{"label":"186380","univ_name":"Rutgers University-New Brunswick","visit_ct":253,"nonvisit_ct":147,"visit":{"pct_white":47.74659633326101,"pct_asian":10.09302451724886,"pct_hispanic":22.67777717509221,"pct_black":18.366917986548057,"pct_amerindian":0.12102679540030375,"pct_other":0.9946571924495557},"nonvisit":{"pct_white":57.958210746522425,"pct_asian":5.254911112407591,"pct_hispanic":20.96713701107657,"pct_black":14.47288365851829,"pct_amerindian":0.15752231566138536,"pct_other":1.1893351558137384}},{"label":"196097","univ_name":"Stony Brook University","visit_ct":229,"nonvisit_ct":927,"visit":{"pct_white":44.83212946027219,"pct_asian":14.967293920699383,"pct_hispanic":25.181821000093002,"pct_black":13.55891744427566,"pct_amerindian":0.3441113556747373,"pct_other":1.1157268189850245},"nonvisit":{"pct_white":51.16718408921087,"pct_asian":5.042712603752246,"pct_hispanic":21.06384033398998,"pct_black":20.745859548694938,"pct_amerindian":0.6785548397520044,"pct_other":1.301848584599965}},{"label":"100751","univ_name":"University of Alabama","visit_ct":113,"nonvisit_ct":228,"visit":{"pct_white":62.66884301840423,"pct_asian":1.8019091984484323,"pct_hispanic":4.6987189480151486,"pct_black":28.639810730759002,"pct_amerindian":0.8830730575602241,"pct_other":1.3076450468129583},"nonvisit":{"pct_white":59.56492202488933,"pct_asian":0.41955014072099917,"pct_hispanic":4.7688368308287234,"pct_black":32.66444200577815,"pct_amerindian":1.5602487439624346,"pct_other":1.0220002538203639}},{"label":"106397","univ_name":"University of Arkansas","visit_ct":124,"nonvisit_ct":113,"visit":{"pct_white":67.53494282083862,"pct_asian":1.4956586192291401,"pct_hispanic":10.244599745870394,"pct_black":17.708333333333332,"pct_amerindian":0.8166560779330791,"pct_other":2.1998094027954305},"nonvisit":{"pct_white":62.67285915566456,"pct_asian":1.3150341804519126,"pct_hispanic":6.168136513072066,"pct_black":27.926211970985754,"pct_amerindian":0.5896780253613735,"pct_other":1.3280801544643337}},{"label":"110635","univ_name":"University of California-Berkeley","visit_ct":297,"nonvisit_ct":1107,"visit":{"pct_white":25.509533201840895,"pct_asian":15.172149399774636,"pct_hispanic":49.06047398187411,"pct_black":5.973232152230266,"pct_amerindian":0.4707930928848975,"pct_other":3.813818171395191},"nonvisit":{"pct_white":27.06343354362605,"pct_asian":10.811513679225078,"pct_hispanic":51.97952552578278,"pct_black":6.186782154286728,"pct_amerindian":0.7008652392870036,"pct_other":3.257879857792358}},{"label":"110653","univ_name":"University of California-Irvine","visit_ct":232,"nonvisit_ct":1172,"visit":{"pct_white":18.93204710129503,"pct_asian":12.135692939062912,"pct_hispanic":57.33744008037531,"pct_black":8.0481741010992,"pct_amerindian":0.4387010532231011,"pct_other":3.1079447249444576},"nonvisit":{"pct_white":29.178855061094215,"pct_asian":12.109729580633259,"pct_hispanic":49.00877277823749,"pct_black":5.474872742773831,"pct_amerindian":0.6970937709334107,"pct_other":3.5306760663277976}},{"label":"110671","univ_name":"University of California-Riverside","visit_ct":356,"nonvisit_ct":1048,"visit":{"pct_white":20.741522271368474,"pct_asian":14.832068606365567,"pct_hispanic":54.988570114569384,"pct_black":6.248833340096579,"pct_amerindian":0.4171570019883943,"pct_other":2.7718486656116084},"nonvisit":{"pct_white":30.442927778631113,"pct_asian":10.333649708204112,"pct_hispanic":48.55771236996149,"pct_black":6.040214827119926,"pct_amerindian":0.773061552817586,"pct_other":3.8524337632657653}},{"label":"110680","univ_name":"University of California-San Diego","visit_ct":515,"nonvisit_ct":889,"visit":{"pct_white":27.382868423602847,"pct_asian":14.590982339724281,"pct_hispanic":48.284174886382594,"pct_black":5.731372390346342,"pct_amerindian":0.44028305194980355,"pct_other":3.570318907994139},"nonvisit":{"pct_white":25.690457575603368,"pct_asian":9.251437585873493,"pct_hispanic":54.37289797882134,"pct_black":6.57611687584717,"pct_amerindian":0.8539930884849718,"pct_other":3.2550968953696517}},{"label":"201885","univ_name":"University of Cincinnati","visit_ct":353,"nonvisit_ct":464,"visit":{"pct_white":72.11151043350661,"pct_asian":2.531897430795633,"pct_hispanic":3.705822369239187,"pct_black":17.458713656825925,"pct_amerindian":0.14083368567662347,"pct_other":4.051222423956025},"nonvisit":{"pct_white":74.65653887066085,"pct_asian":1.1016724846559895,"pct_hispanic":4.29782112554372,"pct_black":16.256910422940358,"pct_amerindian":0.1403309012639769,"pct_other":3.546726194935103}},{"label":"126614","univ_name":"University of Colorado-Boulder","visit_ct":181,"nonvisit_ct":132,"visit":{"pct_white":56.33058118212654,"pct_asian":3.6726491909815584,"pct_hispanic":30.571681029158867,"pct_black":5.0555339141670865,"pct_amerindian":0.76388822909046,"pct_other":3.6056664544754904},"nonvisit":{"pct_white":58.61704536876274,"pct_asian":2.219370423492111,"pct_hispanic":31.69774288518155,"pct_black":3.8851563876097734,"pct_amerindian":0.666817644246496,"pct_other":2.913867290707332}},{"label":"139959","univ_name":"University of Georgia","visit_ct":173,"nonvisit_ct":245,"visit":{"pct_white":43.52978733466807,"pct_asian":5.247662888401936,"pct_hispanic":11.577175917897625,"pct_black":36.4869232103164,"pct_amerindian":0.19548184698816073,"pct_other":2.9629688017278095},"nonvisit":{"pct_white":45.05138844808062,"pct_asian":2.0692519581682753,"pct_hispanic":11.339939579880335,"pct_black":38.331511325833716,"pct_amerindian":0.24724445855030897,"pct_other":2.960664229486742}},{"label":"155317","univ_name":"University of Kansas","visit_ct":209,"nonvisit_ct":108,"visit":{"pct_white":66.48814255176299,"pct_asian":2.8522700087204145,"pct_hispanic":17.555042791767313,"pct_black":7.437818816030128,"pct_amerindian":1.0804053063334902,"pct_other":4.5863205253856645},"nonvisit":{"pct_white":82.45787908820614,"pct_asian":0.5071999067218562,"pct_hispanic":9.671777531627122,"pct_black":2.3028041741969334,"pct_amerindian":1.8422433393575468,"pct_other":3.218095959890402}},{"label":"166629","univ_name":"University of Massachusetts-Amherst","visit_ct":216,"nonvisit_ct":132,"visit":{"pct_white":67.01637274335133,"pct_asian":6.882401273796647,"pct_hispanic":14.21369517080666,"pct_black":9.184890840640797,"pct_amerindian":0.22189314777248062,"pct_other":2.48074682363209},"nonvisit":{"pct_white":64.40703313606939,"pct_asian":3.6714593970987246,"pct_hispanic":19.021727519388126,"pct_black":10.193988078706177,"pct_amerindian":0.3044416433439443,"pct_other":2.4013502253936405}},{"label":"181464","univ_name":"University of Nebraska-Lincoln","visit_ct":217,"nonvisit_ct":30,"visit":{"pct_white":71.03396910721803,"pct_asian":2.3444836630938117,"pct_hispanic":16.236520838055764,"pct_black":6.181794631002882,"pct_amerindian":1.2046242025841132,"pct_other":2.9986075580454026},"nonvisit":{"pct_white":84.74254742547426,"pct_asian":0.43360433604336046,"pct_hispanic":6.883468834688347,"pct_black":2.2222222222222223,"pct_amerindian":4.254742547425474,"pct_other":1.4634146341463392}},{"label":"215293","univ_name":"University of Pittsburgh","visit_ct":185,"nonvisit_ct":467,"visit":{"pct_white":77.4650565330244,"pct_asian":4.9272388802172,"pct_hispanic":5.319454700620382,"pct_black":10.27897289863852,"pct_amerindian":0.131770365817529,"pct_other":1.8775066216819751},"nonvisit":{"pct_white":66.3513884182842,"pct_asian":2.3369959823805604,"pct_hispanic":10.695903318973167,"pct_black":18.646272004130566,"pct_amerindian":0.14263355761008115,"pct_other":1.826806718621421}},{"label":"218663","univ_name":"University of South Carolina-Columbia","visit_ct":153,"nonvisit_ct":56,"visit":{"pct_white":54.21081476068689,"pct_asian":1.4112166605772745,"pct_hispanic":6.0028087321885275,"pct_black":35.37746620387286,"pct_amerindian":0.32368925831202044,"pct_other":2.6740043843624353},"nonvisit":{"pct_white":54.128584935392375,"pct_asian":1.0746927198235108,"pct_hispanic":5.597226599432713,"pct_black":36.769618657422,"pct_amerindian":0.3088559722659943,"pct_other":2.121021115663404}}],"priv_out":[{"label":"199193","univ_name":"North Carolina State University","visit_ct":19,"nonvisit_ct":1535,"visit":{"pct_white":63.19214586255259,"pct_asian":6.6199158485273495,"pct_hispanic":8.97054698457223,"pct_black":17.638148667601683,"pct_amerindian":0.1514726507713885,"pct_other":3.427769985974756},"nonvisit":{"pct_white":70.99623759426701,"pct_asian":5.65877959032808,"pct_hispanic":9.09597444653467,"pct_black":10.117809639923427,"pct_amerindian":0.24604588810980488,"pct_other":3.8851528408370015}},{"label":"186380","univ_name":"Rutgers University-New Brunswick","visit_ct":188,"nonvisit_ct":1723,"visit":{"pct_white":68.43208635870542,"pct_asian":8.48612710223151,"pct_hispanic":8.997916902373932,"pct_black":8.223909701378306,"pct_amerindian":0.38933294289117976,"pct_other":5.470626992419653},"nonvisit":{"pct_white":65.38761398830007,"pct_asian":7.981331727460427,"pct_hispanic":12.865085168616655,"pct_black":8.439838910874053,"pct_amerindian":0.28134140571231936,"pct_other":5.044788799036469}},{"label":"196097","univ_name":"Stony Brook University","visit_ct":83,"nonvisit_ct":1206,"visit":{"pct_white":67.04840657129267,"pct_asian":8.124474040466868,"pct_hispanic":12.50228678057883,"pct_black":8.00373202590465,"pct_amerindian":0.3567377702974644,"pct_other":3.9643628114595137},"nonvisit":{"pct_white":68.98446147378814,"pct_asian":6.309127582523111,"pct_hispanic":9.466969543871558,"pct_black":11.08272172963967,"pct_amerindian":0.29021446945709645,"pct_other":3.8665052007204195}},{"label":"100751","univ_name":"University of Alabama","visit_ct":681,"nonvisit_ct":2788,"visit":{"pct_white":71.0393028329508,"pct_asian":7.032903754288356,"pct_hispanic":10.227374106845959,"pct_black":6.629413052822813,"pct_amerindian":0.3560450611927104,"pct_other":4.714961191899366},"nonvisit":{"pct_white":70.51770693276144,"pct_asian":6.589679197270899,"pct_hispanic":8.954214957459655,"pct_black":9.313224361894815,"pct_amerindian":0.3871597420540116,"pct_other":4.23801480855918}},{"label":"106397","univ_name":"University of Arkansas","visit_ct":144,"nonvisit_ct":1256,"visit":{"pct_white":73.19884987618936,"pct_asian":6.563324837413491,"pct_hispanic":9.284437954085751,"pct_black":7.004145162314398,"pct_amerindian":0.49524258723435133,"pct_other":3.4539995827626537},"nonvisit":{"pct_white":67.54542263209328,"pct_asian":7.884325278228446,"pct_hispanic":10.802569284338562,"pct_black":8.18546665528136,"pct_amerindian":0.3565498723896811,"pct_other":5.225666277668675}},{"label":"110635","univ_name":"University of California-Berkeley","visit_ct":153,"nonvisit_ct":2449,"visit":{"pct_white":65.18082539505433,"pct_asian":7.675141912718448,"pct_hispanic":8.601235721558181,"pct_black":7.827863708001506,"pct_amerindian":0.43515251258734433,"pct_other":10.279780750080196},"nonvisit":{"pct_white":71.85853456571428,"pct_asian":5.829862614354125,"pct_hispanic":8.905111834978419,"pct_black":8.93356448353244,"pct_amerindian":0.3815112610100407,"pct_other":4.0914152404106945}},{"label":"110653","univ_name":"University of California-Irvine","visit_ct":37,"nonvisit_ct":1852,"visit":{"pct_white":44.48965500234273,"pct_asian":14.182141007620034,"pct_hispanic":8.887573672659121,"pct_black":5.822297847155434,"pct_amerindian":0.7052847032132377,"pct_other":25.913047767009445},"nonvisit":{"pct_white":71.18048766357441,"pct_asian":6.426866154429213,"pct_hispanic":9.311400300776564,"pct_black":8.377930821390379,"pct_amerindian":0.4299221988070323,"pct_other":4.273392861022401}},{"label":"110671","univ_name":"University of California-Riverside","visit_ct":32,"nonvisit_ct":1590,"visit":{"pct_white":69.40804051915163,"pct_asian":11.22190566635011,"pct_hispanic":6.201329534662868,"pct_black":5.660018993352327,"pct_amerindian":0.2849002849002849,"pct_other":7.223805001582783},"nonvisit":{"pct_white":68.0261307813608,"pct_asian":6.772010559699317,"pct_hispanic":11.419335856199348,"pct_black":8.193800583305425,"pct_amerindian":0.37070130884408714,"pct_other":5.218020910591017}},{"label":"110680","univ_name":"University of California-San Diego","visit_ct":105,"nonvisit_ct":2063,"visit":{"pct_white":60.09992862241256,"pct_asian":11.102733460003417,"pct_hispanic":7.763066622432669,"pct_black":7.092519427772919,"pct_amerindian":0.48958993073358065,"pct_other":13.452161936644849},"nonvisit":{"pct_white":69.83734392509731,"pct_asian":6.446454345120871,"pct_hispanic":10.16462324308673,"pct_black":8.897678520512702,"pct_amerindian":0.3443649472732618,"pct_other":4.309535018909121}},{"label":"201885","univ_name":"University of Cincinnati","visit_ct":167,"nonvisit_ct":2059,"visit":{"pct_white":72.81066018276941,"pct_asian":8.482795361099349,"pct_hispanic":6.690617017498327,"pct_black":7.949376425751636,"pct_amerindian":0.23153523570150394,"pct_other":3.8350157771797746},"nonvisit":{"pct_white":69.07567904931952,"pct_asian":7.280533500376075,"pct_hispanic":9.708902113105921,"pct_black":8.70950337552839,"pct_amerindian":0.28588542178673243,"pct_other":4.939496539883365}},{"label":"126614","univ_name":"University of Colorado-Boulder","visit_ct":327,"nonvisit_ct":2780,"visit":{"pct_white":64.88818467176306,"pct_asian":8.953486625715273,"pct_hispanic":11.131219680699278,"pct_black":6.48251055074118,"pct_amerindian":0.46370695222504243,"pct_other":8.080891518856172},"nonvisit":{"pct_white":68.98701477628904,"pct_asian":7.179416526022113,"pct_hispanic":9.713085110047187,"pct_black":8.862415182723108,"pct_amerindian":0.3817208004684325,"pct_other":4.876347604450116}},{"label":"139959","univ_name":"University of Georgia","visit_ct":192,"nonvisit_ct":2152,"visit":{"pct_white":74.44393643575613,"pct_asian":6.692533919877419,"pct_hispanic":7.453723154486815,"pct_black":5.7379581345920965,"pct_amerindian":0.4714183327978647,"pct_other":5.200430022489674},"nonvisit":{"pct_white":67.41808462294414,"pct_asian":7.198390010543729,"pct_hispanic":10.930109175731065,"pct_black":9.557745387957763,"pct_amerindian":0.33175811654514886,"pct_other":4.563912686278158}},{"label":"155317","univ_name":"University of Kansas","visit_ct":150,"nonvisit_ct":1414,"visit":{"pct_white":71.44107278288482,"pct_asian":6.905748122713294,"pct_hispanic":10.344453982514773,"pct_black":5.37974947285956,"pct_amerindian":0.6008984306633218,"pct_other":5.328077208364234},"nonvisit":{"pct_white":66.26695324026785,"pct_asian":8.566351719441608,"pct_hispanic":11.309017137668823,"pct_black":8.043567699466577,"pct_amerindian":0.42737770968108046,"pct_other":5.386732493474062}},{"label":"166629","univ_name":"University of Massachusetts-Amherst","visit_ct":218,"nonvisit_ct":2254,"visit":{"pct_white":68.71688694764309,"pct_asian":7.848431561631402,"pct_hispanic":10.69941573543593,"pct_black":6.783708661863974,"pct_amerindian":0.3494242441431732,"pct_other":5.602132849282433},"nonvisit":{"pct_white":67.80105326183747,"pct_asian":7.4445395319992285,"pct_hispanic":10.690311847512655,"pct_black":9.143263398080139,"pct_amerindian":0.3207929962065846,"pct_other":4.600038964363925}},{"label":"181464","univ_name":"University of Nebraska-Lincoln","visit_ct":66,"nonvisit_ct":951,"visit":{"pct_white":75.0098499229915,"pct_asian":5.274186038181884,"pct_hispanic":10.140047995988395,"pct_black":4.520219205558939,"pct_amerindian":1.341380421934883,"pct_other":3.7143164153443924},"nonvisit":{"pct_white":71.76288039519935,"pct_asian":5.752240412932645,"pct_hispanic":9.3696232728501,"pct_black":9.028943285094526,"pct_amerindian":0.3113883699082724,"pct_other":3.774924264015112}},{"label":"215293","univ_name":"University of Pittsburgh","visit_ct":172,"nonvisit_ct":1828,"visit":{"pct_white":72.16851336835445,"pct_asian":7.909916273046984,"pct_hispanic":7.3044041260171575,"pct_black":7.637693315087038,"pct_amerindian":0.30533115554966966,"pct_other":4.674141761944696},"nonvisit":{"pct_white":71.08011800355212,"pct_asian":5.8974240230099415,"pct_hispanic":10.022792158295983,"pct_black":8.913348494728766,"pct_amerindian":0.26471946620539977,"pct_other":3.8215978542077957}},{"label":"218663","univ_name":"University of South Carolina-Columbia","visit_ct":361,"nonvisit_ct":2640,"visit":{"pct_white":73.18196555285562,"pct_asian":6.915499878001089,"pct_hispanic":8.33937757158662,"pct_black":6.963630954967361,"pct_amerindian":0.318534141311505,"pct_other":4.280991901277808},"nonvisit":{"pct_white":68.53415039410531,"pct_asian":6.99299728314951,"pct_hispanic":10.336343313631925,"pct_black":9.221647790649776,"pct_amerindian":0.2818674528716693,"pct_other":4.632993765591809}}],"priv_in":[{"label":"199193","univ_name":"North Carolina State University","visit_ct":3,"nonvisit_ct":114,"visit":{"pct_white":84.77751756440281,"pct_asian":4.111371324486079,"pct_hispanic":3.8511579495186052,"pct_black":4.709862086911267,"pct_amerindian":0.33827738745771535,"pct_other":2.21181368722352},"nonvisit":{"pct_white":77.0246784845325,"pct_asian":4.187368378008138,"pct_hispanic":5.92937905089043,"pct_black":9.037191518943343,"pct_amerindian":0.27193359095463004,"pct_other":3.549448976670959}},{"label":"186380","univ_name":"Rutgers University-New Brunswick","visit_ct":52,"nonvisit_ct":82,"visit":{"pct_white":60.85600290170475,"pct_asian":11.088139281828074,"pct_hispanic":11.026478055857817,"pct_black":10.805223068552774,"pct_amerindian":0.39173014145810664,"pct_other":5.832426550598479},"nonvisit":{"pct_white":75.07201024145657,"pct_asian":8.129156146651969,"pct_hispanic":5.401657124568827,"pct_black":7.531737847160485,"pct_amerindian":0.09601365527541694,"pct_other":3.769424984886733}},{"label":"196097","univ_name":"Stony Brook University","visit_ct":35,"nonvisit_ct":300,"visit":{"pct_white":65.07209164526961,"pct_asian":8.307327671341103,"pct_hispanic":11.072486667983409,"pct_black":12.24965435512542,"pct_amerindian":0.3199683981828955,"pct_other":2.9784712620975644},"nonvisit":{"pct_white":78.2825342150908,"pct_asian":5.311383374499721,"pct_hispanic":6.740051115782764,"pct_black":5.837863678987981,"pct_amerindian":0.09745095275161039,"pct_other":3.7307166628871196}},{"label":"100751","univ_name":"University of Alabama","visit_ct":37,"nonvisit_ct":62,"visit":{"pct_white":84.14205977673748,"pct_asian":3.222902412675549,"pct_hispanic":1.5349297803384947,"pct_black":8.772956427799784,"pct_amerindian":0.27907814187972635,"pct_other":2.0480734605689643},"nonvisit":{"pct_white":80.50704225352112,"pct_asian":1.6,"pct_hispanic":2.9183098591549297,"pct_black":13.887323943661972,"pct_amerindian":0.16901408450704225,"pct_other":0.9183098591549343}},{"label":"106397","univ_name":"University of Arkansas","visit_ct":15,"nonvisit_ct":14,"visit":{"pct_white":88.84288747346072,"pct_asian":2.653927813163482,"pct_hispanic":1.9426751592356688,"pct_black":4.087048832271762,"pct_amerindian":0.2653927813163482,"pct_other":2.2080679405520196},"nonvisit":{"pct_white":83.64077669902913,"pct_asian":2.1844660194174756,"pct_hispanic":4.004854368932039,"pct_black":7.451456310679611,"pct_amerindian":0.7524271844660194,"pct_other":1.9660194174757226}},{"label":"110635","univ_name":"University of California-Berkeley","visit_ct":37,"nonvisit_ct":329,"visit":{"pct_white":53.258571889219304,"pct_asian":12.672423059008993,"pct_hispanic":14.926014832861595,"pct_black":5.868653935724266,"pct_amerindian":0.4084411164057182,"pct_other":12.865895166780122},"nonvisit":{"pct_white":51.026598226784884,"pct_asian":15.973783565944089,"pct_hispanic":17.444392596049152,"pct_black":5.230560386883298,"pct_amerindian":0.48643221765013644,"pct_other":9.83823300668844}},{"label":"110653","univ_name":"University of California-Irvine","visit_ct":17,"nonvisit_ct":349,"visit":{"pct_white":41.38650925059391,"pct_asian":14.34022028651645,"pct_hispanic":26.182420272118637,"pct_black":6.630192210783961,"pct_amerindian":0.5399179324742639,"pct_other":10.92074004751278},"nonvisit":{"pct_white":52.288721069356356,"pct_asian":15.527023376088719,"pct_hispanic":16.21145261099461,"pct_black":5.220059437275663,"pct_amerindian":0.4676504264817507,"pct_other":10.285093079802902}},{"label":"110671","univ_name":"University of California-Riverside","visit_ct":45,"nonvisit_ct":321,"visit":{"pct_white":43.26908984317749,"pct_asian":14.802872636670086,"pct_hispanic":25.395720357613953,"pct_black":6.848160633152572,"pct_amerindian":0.4470174410083541,"pct_other":9.237139088377543},"nonvisit":{"pct_white":52.95550377665303,"pct_asian":15.550096088189951,"pct_hispanic":15.421978501587391,"pct_black":5.045157929563485,"pct_amerindian":0.47868109280077714,"pct_other":10.548582611205363}},{"label":"110680","univ_name":"University of California-San Diego","visit_ct":77,"nonvisit_ct":289,"visit":{"pct_white":50.214191943619156,"pct_asian":14.53050507842189,"pct_hispanic":19.18054308021834,"pct_black":5.245975264285221,"pct_amerindian":0.5458439853520348,"pct_other":10.282940648103361},"nonvisit":{"pct_white":52.00750065047507,"pct_asian":15.896713530778685,"pct_hispanic":15.911966049687324,"pct_black":5.3823447607597545,"pct_amerindian":0.43604259938810486,"pct_other":10.365432408911063}},{"label":"201885","univ_name":"University of Cincinnati","visit_ct":65,"nonvisit_ct":70,"visit":{"pct_white":80.1769388107149,"pct_asian":3.9675694324650683,"pct_hispanic":2.6688681337637696,"pct_black":9.150052983070061,"pct_amerindian":0.0985731536016166,"pct_other":3.9379974863845817},"nonvisit":{"pct_white":75.42498762171975,"pct_asian":4.2416240303680475,"pct_hispanic":3.292622544974418,"pct_black":13.10034659184684,"pct_amerindian":0.07839577488034329,"pct_other":3.8620234362106007}},{"label":"126614","univ_name":"University of Colorado-Boulder","visit_ct":13,"nonvisit_ct":24,"visit":{"pct_white":76.22291713200804,"pct_asian":5.316059861514407,"pct_hispanic":12.564217109671656,"pct_black":2.5016752289479562,"pct_amerindian":0.31270940361849453,"pct_other":3.0824212642394504},"nonvisit":{"pct_white":74.15213642460242,"pct_asian":6.95535543207511,"pct_hispanic":10.519256562559878,"pct_black":3.238168231461966,"pct_amerindian":0.7855911094079325,"pct_other":4.3494922398926965}},{"label":"139959","univ_name":"University of Georgia","visit_ct":59,"nonvisit_ct":98,"visit":{"pct_white":75.87621090343413,"pct_asian":5.593136446131002,"pct_hispanic":7.596577651024112,"pct_black":8.824569260140947,"pct_amerindian":0.07542366889009357,"pct_other":2.0340820703797164},"nonvisit":{"pct_white":73.1781557743957,"pct_asian":3.4049537451507015,"pct_hispanic":3.1035511787526113,"pct_black":16.436884512085946,"pct_amerindian":0.5043270665472993,"pct_other":3.3721277230677362}},{"label":"155317","univ_name":"University of Kansas","visit_ct":18,"nonvisit_ct":10,"visit":{"pct_white":79.24368732632597,"pct_asian":5.533405823365954,"pct_hispanic":9.061254077564335,"pct_black":2.4404977648906607,"pct_amerindian":0.6040836051709556,"pct_other":3.1170714026821265},"nonvisit":{"pct_white":75.05660377358491,"pct_asian":5.283018867924528,"pct_hispanic":11.735849056603774,"pct_black":4.679245283018868,"pct_amerindian":0.22641509433962265,"pct_other":3.018867924528296}},{"label":"166629","univ_name":"University of Massachusetts-Amherst","visit_ct":60,"nonvisit_ct":41,"visit":{"pct_white":78.33628434651453,"pct_asian":8.534985900714801,"pct_hispanic":4.682274247491639,"pct_black":4.534723588432028,"pct_amerindian":0.14755065905961046,"pct_other":3.7641812577873894},"nonvisit":{"pct_white":66.23833832071819,"pct_asian":14.469283576835064,"pct_hispanic":6.847386023587396,"pct_black":9.100510473508185,"pct_amerindian":0.035205069530012324,"pct_other":3.309276535821156}},{"label":"181464","univ_name":"University of Nebraska-Lincoln","visit_ct":30,"nonvisit_ct":6,"visit":{"pct_white":87.33047510718347,"pct_asian":4.252340537229854,"pct_hispanic":3.911103333624989,"pct_black":2.93988975413422,"pct_amerindian":0.18374310963338875,"pct_other":1.3824481581940735},"nonvisit":{"pct_white":84.4200807847663,"pct_asian":1.55799192152337,"pct_hispanic":6.982111944604732,"pct_black":4.212348528563186,"pct_amerindian":0.51933064050779,"pct_other":2.308136180034623}},{"label":"215293","univ_name":"University of Pittsburgh","visit_ct":44,"nonvisit_ct":127,"visit":{"pct_white":76.54758888607381,"pct_asian":8.221434000506713,"pct_hispanic":3.8552487121020182,"pct_black":7.2375643948990795,"pct_amerindian":0.34625453931255806,"pct_other":3.79190946710582},"nonvisit":{"pct_white":73.23740697724438,"pct_asian":5.828709080741601,"pct_hispanic":4.47799716092399,"pct_black":12.517744225061298,"pct_amerindian":0.1290489095367144,"pct_other":3.8090936464920206}},{"label":"218663","univ_name":"University of South Carolina-Columbia","visit_ct":22,"nonvisit_ct":47,"visit":{"pct_white":84.17289834826198,"pct_asian":4.396417125482784,"pct_hispanic":1.9886597090968856,"pct_black":5.9824143314980684,"pct_amerindian":0.13969923576300436,"pct_other":3.319911249897275},"nonvisit":{"pct_white":86.11426409383276,"pct_asian":1.8085508891411275,"pct_hispanic":1.9825955353764662,"pct_black":6.636398032538781,"pct_amerindian":0.6659099508134695,"pct_other":2.7922814982973967}}]};
+
+            // Prepping data...
+
+            var data = {};
+
+            Object.keys(allData).forEach(function(loc) {
+                data[loc] = {};
+                Object.keys(allData.pub_out[0].visit).forEach(function(race) {
+                    data[loc][race] = allData[loc].map(function(univ) {
+                        return {
+                            label: univ.label,
+                            visit: univ.visit[race],
+                            nonvisit: univ.nonvisit[race]
+                        }
+                    })
+                });
+                data[loc].count = allData[loc].map(function(univ) {
+                    return {
+                        label: univ.label,
+                        visit: univ.visit_ct,
+                        nonvisit: univ.nonvisit_ct
+                    }
+                });
+            });
+
+            // Defining scales...
+
+            var totalSidebarWidth = 400,
+                totalContentWidth = 510,
+                totalSidebarHeight = 880,
+                totalContentHeight = 880;
+
+            var topSidebarMargin = 70,
+                topContentMargin = 70,
+                chartWidth = 100,
+                chartHeight = 800,
+                labels_pub = ['Visited Public HS', 'Non-Visited Public HS'],
+                labels_priv = ['Visited Private HS', 'Non-Visited Private HS'],
+                bands = allData.pub_out.map(function(d) { return d.label; }),
+                keys = ['visit', 'nonvisit'],
+                colLabel = 260,
+                colCount = 330,
+                cols = [0, 130, 200, 290, 380, 455],
+                raceCategories = ['pct_white', 'pct_asian', 'pct_hispanic', 'pct_black', 'pct_amerindian', 'pct_other'],
+                raceLabels = ['White', 'Asian', 'Latinx', 'Black', 'Native', 'Other'];
+
+            var xScale = d3.scaleLinear()
+                .domain([0, 90])
+                .range([0, chartWidth]);
+
+            var yScale = d3.scaleBand()
+                .domain(bands)
+                .rangeRound([0, chartHeight])
+                .paddingInner(0.15);  // space between bars of bars
+
+            var yBandScale = d3.scaleBand()
+                .domain(keys)
+                .rangeRound([0, yScale.bandwidth()])
+                .padding(0.05);  // space between bars within a set
+
+            var colorScale = d3.scaleOrdinal()
+                .domain(keys)
+                .range(['#FFAE3B', '#003049']);
+
+            // Attaching things...
+
+            var svg = d3.select('#sidebar').append('svg')
+                .attr('width', totalSidebarWidth)
+                .attr('height', totalSidebarHeight);
+
+            var legend = svg.append('g')  // add legend
+                .classed('labels', true)
+                .selectAll('g')
+                .data(labels_pub)
+                .enter()
+                .append('g')
+                .attr('transform', function(d, i) { return 'translate(0, ' + i * (yBandScale.bandwidth() + 1) + ')'; });
+
+            legend.append('rect')
+                .attr('width', yBandScale.bandwidth())
+                .attr('height', yBandScale.bandwidth())
+                .style('fill', colorScale);
+
+            legend.append('text')
+                .style('font-size', 12)
+                .style('fill', 'gray')
+                .attr('x', yBandScale.bandwidth() + 5)
+                .attr('y', yBandScale.bandwidth() / 2)
+                .attr('dy', '0.35em')
+                .text(function(d) { return d; });
+
+            var g_univ = svg.append('g')  // add univ names
+                .attr('transform', 'translate(0, ' + topSidebarMargin + ')');
+
+            g_univ.selectAll('text')
+                .data(allData.pub_out)
+                .enter()
+                .append('text')
+                .text(function(d) { return d.univ_name; })
+                .style('font-size', '13px')
+                .attr('dy', '0.35em')
+                .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2) + ')'; });
+
+            var g_label = svg.append('g')  // add labels
+                .attr('transform', 'translate(' + colLabel + ', ' + topSidebarMargin + ')');
+
+            g_label.append('text')
+                .style('font-size', '13px')
+                .style('font-weight', 600)
+                .text('# of Schools')
+                .attr('transform', 'translate(0, -15)');
+
+            var label_group = g_label.append('g')
+                .selectAll('g')
+                .data(bands)
+                .enter()
+                .append('g')
+                .attr('transform', function(d) { return 'translate(0, ' + yScale(d) + ')'; });
+
+            label_group.selectAll('text')
+                .data(keys)
+                .enter()
+                .append('text')
+                .style('text-transform', 'capitalize')
+                .style('font-size', '12px')
+                .attr('dy', '0.35em')
+                .attr('transform', function(d) { return 'translate(0, ' + (yBandScale(d) + (yBandScale.bandwidth() / 2)) + ')'; })
+                .text(function(d) { return d; });
+
+            var g_count = svg.append('g')  // add counts
+                .attr('transform', 'translate(' + colCount + ', ' + topSidebarMargin + ')');
+
+            var count_group = g_count.append('g')
+                .classed('count', true)
+                .selectAll('g')
+                .data(data.pub_out.count)
+                .enter()
+                .append('g')
+                .attr('transform', function(d) { return 'translate(0, ' + yScale(d.label) + ')'; });
+
+            count_group.selectAll('text')
+                .data(function(d) { return keys.map(function(k) { return {key: k, val: d[k]}; }); })
+                .enter()
+                .append('text')
+                .style('font-size', '12px')
+                .attr('dy', '0.35em')
+                .attr('transform', function(d) { return 'translate(0, ' + (yBandScale(d.key) + yBandScale.bandwidth() / 2) + ')'; })
+                .text(function(d) { return d.val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); });
+
+            var svg2 = d3.select('#content').append('svg')
+                .attr('width', totalContentWidth)
+                .attr('height', totalContentHeight);
+
+            raceCategories.forEach(function(race, idx) {  // add race bars
+                var g_race = svg2.append('g')
+                    .attr('transform', 'translate(' + cols[idx] + ', ' + topContentMargin + ')');
+
+                g_race.append('text')
+                    .style('font-size', '13px')
+                    .style('font-weight', 600)
+                    .text(raceLabels[idx])
+                    .attr('transform', 'translate(0, -15)');
+
+                var sets = g_race.append('g')
+                    .classed(race, true)
+                    .selectAll('g')
+                    .data(data.pub_out[race])
+                    .enter()
+                    .append('g')
+                    .attr('transform', function(d) { return 'translate(0, ' + yScale(d.label) + ')'; });
+
+                var bars = sets.selectAll('g')
+                    .data(function(d) { return keys.map(function(k) { return {key: k, val: d[k], label: d.label}; }); })
+                    .enter()
+                    .append('g');
+
+                bars.append('rect')
+                    .attr('width', function(d) { return xScale(d.val); })
+                    .attr('height', yBandScale.bandwidth())
+                    .attr('y', function(d) { return yBandScale(d.key); })
+                    .attr('fill', function(d) { return colorScale(d.key); });
+
+                bars.append('text')
+                    .classed('label', true)
+                    .attr('x', function(d) { return xScale(d.val) + 3; })
+                    .attr('y', function(d) { return yBandScale(d.key) + yBandScale.bandwidth() / 2 ; })
+                    .attr('dy', '0.35em')
+                    .style('text-anchor', 'start')
+                    .text(function(d) { return Math.round(d.val) + '%' });
+            });
+
+            // Handling selection...
+
+            $('.btn').on('click', function() {
+                var $this = $(this);
+
+                if ($this.hasClass('active')) return;
+
+                $this.parent().find('.btn').removeClass('active');
+                $this.addClass('active');
+
+                var dataType = $('#loc_type .active').data('value') + '_' + $('#visit_loc .active').data('value');
+
+                raceCategories.forEach(function(race) {  // update race bars
+
+                    var dataSet = [];
+
+                    data[dataType][race].forEach(function(curr) {
+                        dataSet = dataSet.concat([curr.visit, curr.nonvisit])
+                    });
+
+                    d3.selectAll('g.' + race + ' rect')
+                        .data(dataSet)
+                        .transition()
+                        .duration(800)
+                        .attr('width', function(d) { return xScale(d); });
+
+                    d3.selectAll('g.' + race + ' text')
+                        .data(dataSet)
+                        .transition()
+                        .duration(400)
+                        .style('opacity', 0)
+                        .on('end', function() {
+                            d3.select(this).text(function(d) { return Math.round(d) + '%' });
+                            d3.select(this).attr('x', function(d) { return xScale(d) + 3; });
+                        })
+                        .transition()
+                        .duration(400)
+                        .style('opacity', 1);
+
+                    var dataCount = [];  // update counts
+                    data[dataType].count.forEach(function(curr) {
+                        dataCount = dataCount.concat([curr.visit, curr.nonvisit])
+                    });
+
+                    d3.selectAll('g.count text')
+                        .data(dataCount)
+                        .transition()
+                        .duration(400)
+                        .style('opacity', 0)
+                        .on('end', function() {
+                            d3.select(this).text(function(d) { return d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); });
+                        })
+                        .transition()
+                        .duration(400)
+                        .style('opacity', 1);
+
+                });
+            });
+
+            $('#loc_type .btn').on('click', function() {
+                d3.selectAll('.labels text')  // update legend
+                    .data($(this).data('value') === 'pub' ? labels_pub : labels_priv)
+                    .transition()
+                    .duration(400)
+                    .style('opacity', 0)
+                    .on('end', function() {
+                        d3.select(this).text(function(d) { return d; });
+                    })
+                    .transition()
+                    .duration(400)
+                    .style('opacity', 1);
+            });
+
+            $('#scrollbar').scroll(function () {
+                $('#content').scrollLeft($('#scrollbar').scrollLeft());
+            });
+            $('#content').scroll(function () {
+                $('#scrollbar').scrollLeft($('#content').scrollLeft());
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div class="btn-wrapper">
+            <div id="visit_loc" class="btn-set">
+                <div class="btn active" data-value="out">Out-of-State</div>
+                <div class="btn" data-value="in">In-State</div>
+            </div>
+            <div id="loc_type" class="btn-set" style="float: right;">
+                <div class="btn active" data-value="pub">Public High Schools</div>
+                <div class="btn" data-value="priv">Private High Schools</div>
+            </div>
+        </div>
+        <div id="race">
+            <div id="sidebar" style="width: 400px; display: inline-block; vertical-align: top;"></div>
+            <div style="display: inline-block">
+                <div id="content" style="width: 510px;"></div>
+            </div>
+        </div>
+        <p><b style="color:#444;">Note:</b> Non-visited schools include only out-of-state schools in states that received at least one high school visit.</p>
+    </div>
+</body>
+</html>

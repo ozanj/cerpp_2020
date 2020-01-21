@@ -62,6 +62,16 @@ cite <- function(b, eg = TRUE) {
 
 ---
 
+# Introduction
+## &nbsp;
+
+--- 
+
+# IPEDS Nonres Research Results
+## &nbsp;
+
+---
+
 # Motivation
 ## Policy discourse about access to public research universities
 
@@ -140,6 +150,43 @@ cat(paste0(readLines("assets/tables/data_appendix.html"), collapse=" "))
 ```
   </div>
 </div>
+
+---
+
+# Off-Campus Recruiting Results
+## Number of events by type and in-state, out-of-state
+
+<div class="table-wrapper">
+  <iframe src="./assets/graphs/visit_count_combo.html" width='100%'></iframe>
+</div>
+
+---
+
+# Off-Campus Recruiting Results
+## Average median household income of visited vs. non-visited public high schools
+
+<div class="table-wrapper">
+  <iframe src="./assets/graphs/third_way_income.html" width='100%'></iframe>
+</div>
+
+---
+
+# Off-Campus Recruiting Results
+## Average racial composition of visited vs. non-visited high schools
+
+<div class="table-wrapper">
+  <iframe src="./assets/graphs/third_way_race.html" width='100%'></iframe>
+</div>
+
+---
+
+# Our Theory of Change
+## Macro
+
+---
+
+# Our Theory of Change
+## Local
 
 --- #references
 # References

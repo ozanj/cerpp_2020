@@ -29,18 +29,8 @@ csl: ./assets/other/apa.csl
 
 ---
 
-# Introduction
-## &nbsp;
-
---- 
-
-# IPEDS Nonres Research Results
-## &nbsp;
-
----
-
 # Motivation
-## Policy discourse about access to public research universities
+## Why study recruiting
 
 The problem: access to public research universities
 - Historical mission of social mobility for meritorious state residents
@@ -58,10 +48,11 @@ Problem with policy discourse: does not interrogate university enrollment priori
 - Applauds universities for commitment to access despite "deficiencies" of students and K-12 schools, despite declines in state funding
 - Decades of research finds policy adoption a symbolic effort to appease stakeholders (e.g., Davis, 2005)
 
----
+
+--- 
 
 # Motivation
-## Analyze recruiting to understand university enrollment priorities
+## Why study recruiting
 
 Alternative explanation for access inequality
 - University enrollment priorities biased against poor students and/or communities of color
@@ -78,10 +69,11 @@ Research focus
 - **Analytic focus**
     - Income; race; academic achievement; in-state vs. out-of-state
 
+
 --- &twocol
 
-# Background
-## The enrollment management industry
+# Motivation
+## The enrollment funnel
 
 *** =left
 
@@ -105,7 +97,41 @@ Research focus
 * Convert admits to enrollees
     * Financial aid leveraging
 
+--- 
+
+# Conceptual Framing
+## The sieve and the market
+
+Functions
+
+adf 
+
+--- 
+
+# Conceptual Framing
+## The political economy of enrollment management
+
+la la 
+
+--- 
+
+# Empirical context
+## Causes and consequences of nonresident enrollment growth
+
+--- 
+
+# Empirical context
+## State funding and tuition revenue
+
+
+--- 
+
+# Research overview
+## Off-campus recruiting visits by public research universities
+
 ---
+
+overview of the project, data collection, etc
 
 # Data and Methods
 ## Summary of Data Collection Sources and Quality Checks Performed
@@ -145,15 +171,16 @@ Research focus
 
 ---
 
-# Our Theory of Change
-## Macro
+# Discussion
+## A theory of change
 
 ---
 
-# Our Theory of Change
-## Local
+# Discussion
+## This is what happens when government disinvests in public universities
 
 --- #references
+
 # References
 ## &nbsp;
 

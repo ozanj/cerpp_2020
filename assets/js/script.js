@@ -11,7 +11,7 @@ $(function() {
 
   }
   
-  var verticalSlide = 4;
+  var verticalSlide = 10;
   var univSelected = false;
 
   // Keyboard Controls

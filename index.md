@@ -126,16 +126,22 @@ functions of higher education: "sieve," "incubator," "temple," and "hub"
 -->
 
 The "sieve" function of higher education (Stevens, Armstrong, and Arum, 2008)
-- Sieve: an instrument that strains and separates
-- Higher education allocates people to occupational/social positions
-- Dual character of education [CITE WEBER], simultaneously serves:
-    - Social mobility by redistributing access to privileged positions
-    - Social reproduction by granting privileged families disproportionate access to universities that confer privileged positions
+- Higher education allocates people to different occupational/social positions
+- Dual character of education [CITE WEBER], simultaneously serves
+    - Social mobility: redistributing access to privileged positions
+    - Social reproduction: privileged families get access to universities that confer the best positions
+    
+<br>
+Political economy of US higher education citep(bib['RN4517'])`:
+- "National service" configuration
+    - Expansion of federal and state investment in higher ed
+    - Creation of state higher education systems
+- "Market" configuration
+    - Demographic contraction; state disinvestment
+    - Transportation, technology advances, national guidebooks and rankings create national market
 
 <br>
-The political economy of US higher education: from "national service" to "market" (Stevens and Gebre-Medhin, 2016)
-
-adf 
+Under "national service," the sieve serves redistribution. Under "market," sieve serves reproduction
 
 --- 
 

@@ -125,7 +125,7 @@ Research focus
 functions of higher education: "sieve," "incubator," "temple," and "hub"
 -->
 
-The "sieve" function of higher education 
+The "sieve" function of higher education (Stevens, Armstrong, and Arum, 2008)
 - Sieve: an instrument that strains and separates
 - Higher education allocates people to occupational/social positions
 - Dual character of education [CITE WEBER], simultaneously serves:
@@ -133,7 +133,7 @@ The "sieve" function of higher education
     - Social reproduction by granting privileged families disproportionate access to universities that confer privileged positions
 
 <br>
-The political economy of US higher education: from "national service" to "market" 
+The political economy of US higher education: from "national service" to "market" (Stevens and Gebre-Medhin, 2016)
 
 adf 
 
@@ -229,23 +229,23 @@ order by 2;
 
 <div class="graphs-set">
   <ul>
-    <li><a href="#/10/2">National Overview</a></li>
+    <li><a href="#/11/2">National Overview</a></li>
     <li>In-State Results
       <ul>
-        <li><a href="#/10/3">State (Map)</a></li>
-        <li><a href="#/10/4">State (Figures)</a></li>
-        <li><a href="#/10/5">Metro (Map)</a></li>
-        <li><a href="#/10/6">Metro (Figures)</a></li>
+        <li><a href="#/11/3">State (Map)</a></li>
+        <li><a href="#/11/4">State (Figures)</a></li>
+        <li><a href="#/11/5">Metro (Map)</a></li>
+        <li><a href="#/11/6">Metro (Figures)</a></li>
       </ul>
     </li>
     <li>Out-of-State Results
       <ul>
-        <li><a href="#/10/7">Top Visited Metro Areas</a></li>
-        <li><a href="#/10/8">Out-of-State (Figures)</a></li>
-        <li><a href="#/10/9">Metro 1 (Map)</a></li>
-        <li><a href="#/10/10">Metro 1 (Figures)</a></li>
-        <li><a href="#/10/11">Metro 2 (Map)</a></li>
-        <li><a href="#/10/12">Metro 2 (Figures)</a></li>
+        <li><a href="#/11/7">Top Visited Metro Areas</a></li>
+        <li><a href="#/11/8">Out-of-State (Figures)</a></li>
+        <li><a href="#/11/9">Metro 1 (Map)</a></li>
+        <li><a href="#/11/10">Metro 1 (Figures)</a></li>
+        <li><a href="#/11/11">Metro 2 (Map)</a></li>
+        <li><a href="#/11/12">Metro 2 (Figures)</a></li>
       </ul>
     </li>
   </ul>

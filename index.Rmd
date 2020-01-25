@@ -47,7 +47,7 @@ cite <- function(b, eg = TRUE) {
   paste0(c, ')')
 }
 
-verticalSlide <- 10
+verticalSlide <- 11
 ```
 
 # Follow the Money

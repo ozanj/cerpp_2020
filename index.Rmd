@@ -1,6 +1,6 @@
 ---
-title: 'Recruiting the Out-of-State University'
-subtitle: 'Off-Campus Recruiting by Public Research Universities'
+title: 'The Political Economy of Enrollment Management'
+#subtitle: 'Off-Campus Recruiting by Public Research Universities'
 author: Ozan Jaquette
 # lib_cdn: 'https://cdn.rawgit.com/ramnathv/slidifyLibraries/master/inst/libraries'
 mode: selfcontained
@@ -50,15 +50,33 @@ cite <- function(b, eg = TRUE) {
 verticalSlide <- 10
 ```
 
-# Recruiting the Out-of-State University
-## Off-Campus Recruiting by Public Research Universities
+# Follow the Money
+## The Political Economy of Enrollment Management at Public Research Universities
 
 <p class='author'>Ozan Jaquette</p>
 <p class='affiliation'>University of California, Los Angeles</p>
 
+<p class='author'>Crystal Han</p>
+<p class='affiliation'>University of California, Los Angeles</p>
+
+<p class='author'>Karina Salazar</p>
+<p class='affiliation'>University of Arizona</p>
+
 <img id='logo_ucla' src='assets/images/ucla.png' alt='University of California, Los Angeles' />
 
 <a id='link_presentation' href='https://ozanj.github.io/cerpp_2020/' target='_blank'>ozanj.github.io/cerpp_2020</a>
+
+--- 
+# Acknowledgments
+
+<br>
+This research was made possible by funding from the following sources:
+
+<br>
+- __Joyce Foundation__ (Research Grant)
+- __National Academy of Education/Spencer Foundation__ (Postdoctoral Fellowship)
+- __American Educational Research Association__ (Dissertation Grant)
+- __UCLA Office of Equity, Diversity, and Inclusion__ (Faculty Career Development Award)
 
 ---
 
@@ -135,11 +153,24 @@ Research focus
 # Conceptual Framing
 ## The sieve and the market
 
-Functions
+<!--
+functions of higher education: "sieve," "incubator," "temple," and "hub"
+-->
+
+The "sieve" function of higher education `r citep(bib['RN2377'])`
+- Sieve: an instrument that strains and separates
+- Higher education allocates people to occupational/social positions
+- Dual character of education [CITE WEBER], simultaneously serves:
+    - Social mobility by redistributing access to privileged positions
+    - Social reproduction by granting privileged families disproportionate access to universities that confer privileged positions
+
+<br>
+The political economy of US higher education: from "national service" to "market" `r citep(bib['RN4517'])`
 
 adf 
 
 --- 
+
 
 # Conceptual Framing
 ## The political economy of enrollment management

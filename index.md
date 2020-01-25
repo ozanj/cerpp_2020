@@ -30,6 +30,7 @@ csl: ./assets/other/apa.csl
 <p class='affiliation'>University of Arizona</p>
 
 <img id='logo_ucla' src='assets/images/ucla.png' alt='University of California, Los Angeles' />
+<img id='logo_ua' src='assets/images/ua.png' alt='University of Arizona' />
 
 <a id='link_presentation' href='https://ozanj.github.io/cerpp_2020/' target='_blank'>ozanj.github.io/cerpp_2020</a>
 

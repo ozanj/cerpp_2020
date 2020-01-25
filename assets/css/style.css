@@ -17,7 +17,7 @@
 .reveal #title .logo {
   float: none;
   position: absolute;
-  transform: translate(-50%, 1400%);
+  transform: translate(-50%, 1430%);
 }
 
 #link_presentation {
@@ -25,7 +25,7 @@
   font-size: 18px;
   font-weight: 300;
   position: absolute;
-  transform: translate(-50%, 980%);
+  transform: translate(-50%, 600%);
 }
 
 .reveal #title h1 {
@@ -47,7 +47,7 @@
 .reveal #title .author {
   color: #000;
   font-weight: 300;
-  font-size: 25px;
+  font-size: 23px;
   transform: translateY(120px);
 }
 
@@ -59,7 +59,12 @@
 
 #logo_ucla {
   width: 180px;
-  transform: translate(-50%, 120px);
+  transform: translate(115%, -40%);
+}
+
+#logo_ua {
+  width: 150px;
+  transform: translate(-230%, -40%);
 }
 
 /* Deep-Dive Slides */

@@ -49,24 +49,24 @@ This research was made possible by funding from the following sources:
 ---
 
 # Motivation
-## Why study recruiting
+## Policy discourse on college access inequality
 
-The problem: access to public research universities
-- Historical mission of social mobility for meritorious state residents
-- Concern about growing socioeconomic and racial inequality in access
-<br>
-Mainstream policy discourse about access: The 2014 White House "Access Summit" 
+The 2014 White House "Access Summit" 
 - The White House (2014) review of causes of unequal college access
     - "achievement gap", "under-matching"; place responsibility on students, K-12 schools
-    - affordability; declining state support leads to rising tuition prices
 - The White House (2014) asks universities for *Commitments to Action on College Opportunity*
     - Universities pledge "action plans" (e.g., need-based financial aid, "outreach", holistic admission)
+    - "Despite state disinvestment and student deficiencies, we care about access more than ever"
 
 <br>
-Problem with policy discourse: does not interrogate university enrollment priorities
-- Applauds universities for commitment to access despite "deficiencies" of students and K-12 schools, despite declines in state funding
-- Decades of research finds policy adoption a symbolic effort to appease stakeholders (e.g., Davis, 2005)
+Why study marketing, recruiting
+- Universities expend substantial resources identifying, recruiting prospects (Ruffalo Noel-Levitz, 2018)
+- Internal resource allocation better indicator of organizational priorities than rhetoric, policies
+- Knowing which student populations targeted by recruiting efforts indicates enrollment priorities
 
+<br>
+Enrollment management is an opaque industry
+- Research goal: document concrete EM behaviors, so that this can be part of policy discussion
 
 --- 
 
@@ -92,13 +92,11 @@ Research focus
 --- &twocol
 
 # Motivation
-## The enrollment funnel
+## The "enrollment funnel"
 
 *** =left
 
-**The enrollment funnel**
-
-<img src="assets/images/funnel.png" alt="Enrollment Funnel" style="width:80%;float:left;">
+<img src="assets/images/funnel.png" alt="Enrollment Funnel" style="width:90%;float:left;">
 
 *** =right
 
@@ -123,6 +121,9 @@ Research focus
 
 <!--
 functions of higher education: "sieve," "incubator," "temple," and "hub"
+
+<br>
+Under "national service," the sieve serves redistribution. Under "market," sieve serves reproduction
 -->
 
 The "sieve" function of higher education (Stevens, Armstrong, and Arum, 2008)
@@ -140,8 +141,37 @@ Political economy of US higher education citep(bib['RN4517'])`:
     - Demographic contraction; state disinvestment
     - Transportation, technology advances, national guidebooks and rankings create national market
 
+
+
+--- &twocol
+
+# Conceptual Framing
+## The political economy of enrollment management
+
+*** =left
+
+**Iron triangle of enrollment management**
+
+<img src="assets/images/iron_triangle.png" alt="Enrollment Funnel" style="width:80%;float:left;">
+
+*** =right
+
+**"National service" political economy**
+* Universities as civil service orgs
+    - State demands human capital development, equality of opportunity
+* University enrollment goals
+    - Access; academic quality
+* The "sieve" serves
+    - Mobility and reproduction
+
 <br>
-Under "national service," the sieve serves redistribution. Under "market," sieve serves reproduction
+
+**"Market" political economy**
+* Universities as self-interested corporations
+* University enrollment goals
+    - Revenue; academic quality (rankings)
+* The "sieve" serves
+    - Social reproduction (paying customers)
 
 --- 
 
@@ -149,7 +179,8 @@ Under "national service," the sieve serves redistribution. Under "market," sieve
 # Conceptual Framing
 ## The political economy of enrollment management
 
-la la 
+Introduce iron triangle; 
+
 
 --- 
 

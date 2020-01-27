@@ -27,18 +27,18 @@ library(servr)
 # Check if server(s) running: daemon_list()
 # Stop server(s): daemon_stop(which = daemon_list())
 library(knitcitations)
-cleanbib()
+# cleanbib()
 bib <- read.bibtex('./assets/other/spencer-bib.bib')
 # Function for parenthetical citation needing `e.g.,` or have no year (ie. forthcoming)
 # b: citation(s)
 # eg: T/F - whether or not to include `e.g.,` in citation
-cite <- function(b, eg = TRUE) {
+cite <- function(b, eg = FALSE) {
   c <- ifelse(eg, '(e.g., ', '(')
   for (i in seq_along(b)) {
     if (i != 1) {
       c <- paste0(c, '; ')
     }
-    a <- paste(b[[i]]$author$family, collapse = ', ')
+    a <- paste(b[[i]]$author$family, collapse = ' and ')
     y <- ifelse(is.null(b[[i]]$year), 'forthcoming', b[[i]]$year)
     entry <- paste(a, y, sep = ', ')
     c <- paste0(c, entry)
@@ -253,7 +253,7 @@ Crowd out? Effect of nonresident enrollment on resident enrollment `r citep(bib[
 
 <br>
 
-Effect of resident and nonresident enrollment on faculty hiring `r citep(bib['RN4492'])`
+Effect of resident and nonresident enrollment on faculty hiring `r cite(bib['RN4492'])`
 - Nonresident enrollment has strong positive relationship with tenure-line faculty hiring
 - *Not quite causal*
 

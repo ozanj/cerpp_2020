@@ -143,7 +143,7 @@ Under "national service," the sieve serves redistribution. Under "market," sieve
 
 The "sieve" function of higher education (Stevens, Armstrong, and Arum, 2008)
 - Higher education allocates people to different occupational/social positions
-- Dual character of education , simultaneously serves
+- Dual character of education (Weber, 1948), simultaneously serves
     - Social mobility: redistributing access to privileged positions
     - Social reproduction: privileged families get access to universities that confer the best positions
     
@@ -214,13 +214,13 @@ Nonresident enrollment growth and socioeconomic/racial composition (Jaquette, Cu
 
 <br>
 
-Crowd out? Effect of nonresident enrollment on resident enrollment 
+Crowd out? Effect of nonresident enrollment on resident enrollment (Curs and Jaquette, 2017)
 - No effect for population of public research; crowd out at prestigious public research
 - *Plausibly causal*
 
 <br>
 
-Effect of resident and nonresident enrollment on faculty hiring 
+Effect of resident and nonresident enrollment on faculty hiring (Jaquette and Curs, under review)
 - Nonresident enrollment has strong positive relationship with tenure-line faculty hiring
 - *Not quite causal*
 

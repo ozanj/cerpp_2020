@@ -148,7 +148,7 @@ The "sieve" function of higher education (Stevens, Armstrong, and Arum, 2008)
     - Social reproduction: privileged families get access to universities that confer the best positions
     
 <br>
-Political economy of US higher education citep(bib['RN4517'])`:
+Political economy of US higher education (Stevens and Gebre-Medhin, 2016):
 - "National service" orientation
     - Expansion of federal and state investment in higher ed
     - Creation of state higher education systems

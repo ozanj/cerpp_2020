@@ -75,7 +75,7 @@ body {
   list-style-type: none;
 }
 
-.reveal ul li:before {
+.reveal ul > li:before {
   content: '\25B9';
   margin-left: -1em;
   position: absolute;
@@ -83,7 +83,19 @@ body {
 }
 
 .reveal ol li {
-  list-style-type: decimal;
+  counter-increment: list;
+  list-style-type: none;
+  position: relative;
+}
+
+.reveal ol li:before {
+  color: rgb(231, 103, 97);
+  opacity: 0.8;
+  content: counter(list) '.';
+  left: -32px;
+  position: absolute;
+  text-align: right;
+  width: 26px;
 }
 
 .reveal ul ul li:before {
@@ -141,7 +153,7 @@ body {
 }
 
 .reveal table td:empty:after{
-  content: "\00a0";
+  content: '\00a0';
 }
 
 /* Links */

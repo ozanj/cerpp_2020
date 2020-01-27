@@ -1,5 +1,5 @@
 ---
-title: 'Follow the Mondey'
+title: 'Follow the Money'
 #subtitle: 'Off-Campus Recruiting by Public Research Universities'
 author: Ozan Jaquette
 # lib_cdn: 'https://cdn.rawgit.com/ramnathv/slidifyLibraries/master/inst/libraries'
@@ -93,9 +93,9 @@ The 2014 White House "Access Summit"
 <br>
 Why study marketing, recruiting
 - Enrollment management is an opaque industry
-    - Rhetoric: "despite state disinvestment (and student deficiences), we care about access"
-- Internal resource allocation better indicator of organizational priorities than rhetoric, policies
-- Knowing which student populations targeted by recruiting efforts indicates enrollment priorities
+    - Rhetoric: "despite state disinvestment (and student deficiencies), we care about access"
+- Internal resource allocation is better indicator of organizational priorities than rhetoric, policies
+- Knowing which student populations are targeted by recruiting efforts indicates enrollment priorities
 
 <br>
 Research goal: 
@@ -168,7 +168,7 @@ Political economy of US higher education (Stevens and Gebre-Medhin, 2016):
 **Iron triangle of enrollment management**
 
 <br>
-<img src="assets/images/iron_triangle.png" alt="Enrollment Funnel" style="width:80%;float:left;">
+<img src="assets/images/iron_triangle.png" alt="Iron Triangle" style="width:80%;float:left;">
 
 *** =right
 
@@ -241,7 +241,7 @@ Effect of resident and nonresident enrollment on faculty hiring (Jaquette and Cu
     2. Organizational type
 * Data collection sample
     - 54 public research universities
-    - 49 private research universities
+    - 49 private national universities
     - 42 selective private liberal arts
 * Data collection period
     - 1/1/2017 to 12/31/2017
@@ -268,7 +268,7 @@ Effect of resident and nonresident enrollment on faculty hiring (Jaquette and Cu
 counselor events
     - Exclude: admitted or committed student events, interviews
 - Event host
-    - Include: paid admissions staff or consultants (e.g. regional recruiters)
+    - Include: paid admissions staff or consultants (e.g., regional recruiters)
     - Exclude: alumni, student volunteers
 - Event location
     - Any off-campus location
@@ -277,7 +277,7 @@ counselor events
 ---
 
 # Research methods
-## Summary of Data Collection Sources and Quality Checks Performed
+## Summary of data collection sources and quality checks performed
 
 <div class="table-wrapper">
   <div class="scroll-wrapper scroll-wrapper-x">
@@ -555,7 +555,7 @@ Mitchell Stevens says:
 This is what happens when state cuts investment in public flagship universities 
 - Increase nonresident enrollment; they pay 2X-3X more than residents
 - Recruit in wealthy (predominantly white) parts of metropolitan areas
-- Don't villify universities for focusing on paying customers; rational response to state disinvestment
+- Don't vilify universities for focusing on paying customers; rational response to state disinvestment
 
 <br>
 
@@ -565,37 +565,67 @@ How do we get out of vicious cycle
 - Universities said this: "this is how enrollment priorities change when state funding shrinks"
 - Then the question to politicians, society becomes
     - "Is this the higher education system we want?"
-    - Or do we have will to increase block grants and increasing purchasing power of poor students?
+    - Or do we have to increase block grants and increase purchasing power of poor students?
 
 --- #references
 
 # References
 ## &nbsp;
 
-<p><a id='bib-RN2436'></a><a href="#cite-RN2436">[1]</a><cite>
-G. F. Davis.
-&ldquo;Firms and environments&rdquo;.
-In: 
-<em>The handbook of economic sociology</em>.
-Ed. by N. J. Smelser and R. Swedberg.
-New York: Russell Sage Foundation, 2005, pp. 478-502.
-ISBN: 0691034486 (alk. paper).</cite></p>
+<p><a id='bib-RN4290'></a><a href="#cite-RN4290">[1]</a><cite>
+B. R. Curs and O. Jaquette.
+&ldquo;Crowded Out? The Effect of Nonresident Enrollment on Resident Access to Public Research Universities&rdquo;.
+In: <em>Educational Evaluation and Policy Analysis</em> 39.4 (2017), pp. 644-669.</cite></p>
 
-<p><a id='bib-RN4402'></a><a href="#cite-RN4402">[2]</a><cite>
+<p><a id='bib-RN3753'></a><a href="#cite-RN3753">[2]</a><cite>
+O. Jaquette and B. R. Curs.
+&ldquo;Creating the out-of-state university: Do public universities increase nonresident freshman enrollment in response to declining state appropriations?&rdquo;
+In: <em>Research in Higher Education</em> 56.6 (2015), pp. 535-565.
+ISSN: 0361-0365.</cite></p>
+
+<p><a id='bib-RN4492'></a><a href="#cite-RN4492">[3]</a><cite>
+O. Jaquette and B. R. Curs.
+&ldquo;Faculty hiring at the out-of-state university&rdquo;.
+In: <em>American Educational Research Journal</em> ().</cite></p>
+
+<p><a id='bib-RN3685'></a><a href="#cite-RN3685">[4]</a><cite>
+O. Jaquette, B. R. Curs, and J. R. Posselt.
+&ldquo;Tuition rich, mission poor: Nonresident enrollment growth and the socioeconomic and racial composition of public research universities&rdquo;.
+In: <em>Journal of Higher Education</em> 87.5 (2016), pp. 635-673.</cite></p>
+
+<p><a id='bib-RN4402'></a><a href="#cite-RN4402">[5]</a><cite>
 Ruffalo Noel-Levitz.
 <em>2018 marketing and student recruitment report of effective practices</em>.
 Tech. rep.
 Ruffalo Noel-Levitz, 2018.
 URL: <a href="http://learn.ruffalonl.com/rs/395-EOG-977/images/RNL_2018_Student_Recruitment_Marketing_Report_EM-19.pdf">http://learn.ruffalonl.com/rs/395-EOG-977/images/RNL_2018_Student_Recruitment_Marketing_Report_EM-19.pdf</a>.</cite></p>
 
-<p><a id='bib-RN4017'></a><a href="#cite-RN4017">[3]</a><cite>
+<p><a id='bib-RN2377'></a><a href="#cite-RN2377">[6]</a><cite>
+M. L. Stevens, E. A. Armstrong, and R. Arum.
+&ldquo;Sieve, incubator, temple, hub: Empirical and theoretical advances in the sociology of higher education&rdquo;.
+In: <em>Annual Review of Sociology</em> 34 (2008), pp. 127-151.</cite></p>
+
+<p><a id='bib-RN4517'></a><a href="#cite-RN4517">[7]</a><cite>
+M. L. Stevens and B. Gebre-Medhin.
+&ldquo;Association, service, market: Higher education in American political development&rdquo;.
+In: <em>Annual Review of Sociology</em> 42 (2016), pp. 121-142.</cite></p>
+
+<p><a id='bib-RN4017'></a><a href="#cite-RN4017">[8]</a><cite>
 The White House.
 <em>Commitments to action on college opportunity</em>.
 Tech. rep.
 The Executive Office of the President, 2014.</cite></p>
 
-<p><a id='bib-RN4016'></a><a href="#cite-RN4016">[4]</a><cite>
+<p><a id='bib-RN4016'></a><a href="#cite-RN4016">[9]</a><cite>
 The White House.
 <em>Increasing college opportunity for low-income students</em>.
 Tech. rep.
 The Executive Office of the President, 2014.</cite></p>
+
+<p><a id='bib-RN1297'></a><a href="#cite-RN1297">[10]</a><cite>
+M. Weber.
+&ldquo;Bureaucracy&rdquo;.
+In: 
+<em>From Max Weber: Essays in sociology</em>.
+Ed. by H. H. Gerth and C. W. Mills.
+London,: Routledge &amp; K. Paul, 1948, pp. 196-244.</cite></p>

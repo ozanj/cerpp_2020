@@ -1,5 +1,5 @@
 ---
-title: 'Follow the Mondey'
+title: 'Follow the Money'
 #subtitle: 'Off-Campus Recruiting by Public Research Universities'
 author: Ozan Jaquette
 # lib_cdn: 'https://cdn.rawgit.com/ramnathv/slidifyLibraries/master/inst/libraries'
@@ -126,9 +126,9 @@ The 2014 White House "Access Summit"
 <br>
 Why study marketing, recruiting
 - Enrollment management is an opaque industry
-    - Rhetoric: "despite state disinvestment (and student deficiences), we care about access"
-- Internal resource allocation better indicator of organizational priorities than rhetoric, policies
-- Knowing which student populations targeted by recruiting efforts indicates enrollment priorities
+    - Rhetoric: "despite state disinvestment (and student deficiencies), we care about access"
+- Internal resource allocation is better indicator of organizational priorities than rhetoric, policies
+- Knowing which student populations are targeted by recruiting efforts indicates enrollment priorities
 
 <br>
 Research goal: 
@@ -201,7 +201,7 @@ Political economy of US higher education `r citep(bib['RN4517'])`:
 **Iron triangle of enrollment management**
 
 <br>
-<img src="assets/images/iron_triangle.png" alt="Enrollment Funnel" style="width:80%;float:left;">
+<img src="assets/images/iron_triangle.png" alt="Iron Triangle" style="width:80%;float:left;">
 
 *** =right
 
@@ -274,7 +274,7 @@ Effect of resident and nonresident enrollment on faculty hiring `r cite(bib['RN4
     2. Organizational type
 * Data collection sample
     - 54 public research universities
-    - 49 private research universities
+    - 49 private national universities
     - 42 selective private liberal arts
 * Data collection period
     - 1/1/2017 to 12/31/2017
@@ -301,7 +301,7 @@ Effect of resident and nonresident enrollment on faculty hiring `r cite(bib['RN4
 counselor events
     - Exclude: admitted or committed student events, interviews
 - Event host
-    - Include: paid admissions staff or consultants (e.g. regional recruiters)
+    - Include: paid admissions staff or consultants (e.g., regional recruiters)
     - Exclude: alumni, student volunteers
 - Event location
     - Any off-campus location
@@ -310,7 +310,7 @@ counselor events
 ---
 
 # Research methods
-## Summary of Data Collection Sources and Quality Checks Performed
+## Summary of data collection sources and quality checks performed
 
 <div class="table-wrapper">
   <div class="scroll-wrapper scroll-wrapper-x">
@@ -595,7 +595,7 @@ Mitchell Stevens says:
 This is what happens when state cuts investment in public flagship universities 
 - Increase nonresident enrollment; they pay 2X-3X more than residents
 - Recruit in wealthy (predominantly white) parts of metropolitan areas
-- Don't villify universities for focusing on paying customers; rational response to state disinvestment
+- Don't vilify universities for focusing on paying customers; rational response to state disinvestment
 
 <br>
 
@@ -605,7 +605,7 @@ How do we get out of vicious cycle
 - Universities said this: "this is how enrollment priorities change when state funding shrinks"
 - Then the question to politicians, society becomes
     - "Is this the higher education system we want?"
-    - Or do we have will to increase block grants and increasing purchasing power of poor students?
+    - Or do we have to increase block grants and increase purchasing power of poor students?
 
 --- #references
 

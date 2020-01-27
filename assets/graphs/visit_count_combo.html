@@ -44,13 +44,12 @@
         }
 
         .legend text {
-          text-anchor: end;
-          font-size: 10px;
+          font-size: 14px;
           fill: gray;
         }
 
         .label {
-          font-size: 10px;
+          font-size: 12px;
           text-anchor: middle;
         }
 
@@ -90,8 +89,9 @@
                 col1 = 225,
                 col2 = 465,
                 middleSpace = 0.1,
-                xMax = 2300,
-                barWidth = 18,
+                xMax = 2400,
+                barWidth = 21,
+                l = 18,
                 univ_ids = allData.map(function(d) { return d.label; }),
                 labels = ['Public HS', 'Private HS', 'Community College', 'Other'],
                 bands_in = ['num_pub', 'num_priv', 'num_cc', 'num_other'],
@@ -124,7 +124,7 @@
                 .enter()
                 .append('text')
                 .text(function(d) { return d.univ_name + ' (N=' + (d.instate_ct + d.outofstate_ct).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ')'; })
-                .style('font-size', '13px')
+                .style('font-size', '14.5px')
                 .attr('dy', '0.35em')
                 .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2) + ')'; });
     
@@ -132,7 +132,7 @@
                 .attr('transform', 'translate(' + col1 + ', ' + topMargin + ')');
     
             g_instate.append('text')
-                .style('font-size', '13px')
+                .style('font-size', '15px')
                 .style('font-weight', 600)
                 .style('text-anchor', 'middle')
                 .text('In-State')
@@ -180,7 +180,7 @@
                 .attr('transform', 'translate(' + col2 + ', ' + topMargin + ')');
     
             g_outofstate.append('text')
-                .style('font-size', '13px')
+                .style('font-size', '15px')
                 .style('font-weight', 900)
                 .style('text-anchor', 'middle')
                 .text('Out-of-State')
@@ -237,20 +237,19 @@
                 .text('0');
     
             var legend = svg.append('g')  // legend
+                .classed('legend', true)
                 .selectAll('g')
                 .data(labels)
                 .enter()
                 .append('g')
-                .attr('transform', function(d, i) { return 'translate(0, ' + i * (barWidth + 1) + ')'; });
+                .attr('transform', function(d, i) { return 'translate(0, ' + i * (l + 1) + ')'; });
     
             legend.append('rect')
-                .attr('width', barWidth)
-                .attr('height', barWidth)
+                .attr('width', l)
+                .attr('height', l)
                 .style('fill', colorScale);
     
             legend.append('text')
-                .style('font-size', 12)
-                .style('fill', 'gray')
                 .attr('x', barWidth + 5)
                 .attr('y', barWidth / 2)
                 .attr('dy', '0.35em')

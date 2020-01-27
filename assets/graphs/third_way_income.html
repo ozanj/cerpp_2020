@@ -108,7 +108,8 @@
                 middleSpace = 0.1,
                 xMax = 120000,
                 labels = ['Visited Public HS', 'Non-Visited Public HS'],
-                bands = outofstate.map(function(d) { return d.label; }),
+                // bands = outofstate.map(function(d) { return d.label; }),
+                bands = ['100751', '218663', '126614', '155317', '186380', '215293', '181464', '201885', '106397', '166629', '196097', '139959', '110635', '110680', '110653', '199193', '110671'],
                 keys = ['visit', 'nonvisit'];
 
             var xScale = d3.scaleLinear()

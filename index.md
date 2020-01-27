@@ -530,10 +530,42 @@ order by 2;
 # Discussion
 ## A theory of change
 
+Macro theory of change
+- Transform national policy discourse about access to consider university enrollment behavior and the incentives universities face
+
+<br>
+
+Local theory of change
+- Provide concrete data about university EM behavior to local actors committed to access
+- Local actors use these data to demand substantive change
+
+
 ---
 
 # Discussion
-## This is what happens when government disinvests in public universities
+## The political economy of enrollment management
+
+Mitchell Stevens says:
+
+- Transformation from "national service" to "market" political economy
+- The "sieve" serves social reproduction rather than social mobility
+
+<br>
+
+This is what happens when state cuts investment in public flagship universities 
+- Increase nonresident enrollment; they pay 2X-3X more than residents
+- Recruit in wealthy (predominantly white) parts of metropolitan areas
+- Don't villify universities for focusing on paying customers; rational response to state disinvestment
+
+<br>
+
+How do we get out of vicious cycle
+
+- What if instead of saying: "despite state cuts we care about access more than ever"
+- Universities said this: "this is how enrollment priorities change when state funding shrinks"
+- Then the question to politicians, society becomes
+    - "Is this the higher education system we want?"
+    - Or do we have will to increase block grants and increasing purchasing power of poor students?
 
 --- #references
 

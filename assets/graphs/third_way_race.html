@@ -65,13 +65,12 @@
         }
 
         .legend text {
-          text-anchor: end;
-          font-size: 10px;
+          font-size: 14px;
           fill: gray;
         }
 
         .label {
-          font-size: 10px;
+          font-size: 12px;
           text-anchor: middle;
         }
 
@@ -120,21 +119,21 @@
 
             var totalSidebarWidth = 400,
                 totalContentWidth = 510,
-                totalSidebarHeight = 880,
-                totalContentHeight = 880;
+                totalSidebarHeight = 910,
+                totalContentHeight = 910;
 
             var topSidebarMargin = 70,
                 topContentMargin = 70,
                 chartWidth = 100,
-                chartHeight = 800,
+                chartHeight = 840,
                 labels_pub = ['Visited Public HS', 'Non-Visited Public HS'],
                 labels_priv = ['Visited Private HS', 'Non-Visited Private HS'],
                 // bands = allData.pub_out.map(function(d) { return d.label; }),
                 bands = ['100751', '218663', '126614', '155317', '186380', '215293', '181464', '201885', '106397', '166629', '196097', '139959', '110635', '110680', '110653', '199193', '110671'],
                 keys = ['visit', 'nonvisit'],
-                colLabel = 260,
-                colCount = 330,
-                cols = [0, 130, 200, 290, 380, 455],
+                colLabel = 273,
+                colCount = 343,
+                cols = [0, 130, 200, 295, 380, 455],
                 raceCategories = ['pct_white', 'pct_asian', 'pct_hispanic', 'pct_black', 'pct_amerindian', 'pct_other'],
                 raceLabels = ['White', 'Asian', 'Latinx', 'Black', 'Native', 'Other'];
 
@@ -163,7 +162,7 @@
                 .attr('height', totalSidebarHeight);
 
             var legend = svg.append('g')  // add legend
-                .classed('labels', true)
+                .classed('legend', true)
                 .selectAll('g')
                 .data(labels_pub)
                 .enter()
@@ -176,8 +175,6 @@
                 .style('fill', colorScale);
 
             legend.append('text')
-                .style('font-size', 12)
-                .style('fill', 'gray')
                 .attr('x', yBandScale.bandwidth() + 5)
                 .attr('y', yBandScale.bandwidth() / 2)
                 .attr('dy', '0.35em')
@@ -191,7 +188,7 @@
                 .enter()
                 .append('text')
                 .text(function(d) { return d.univ_name; })
-                .style('font-size', '13px')
+                .style('font-size', '14.5px')
                 .attr('dy', '0.35em')
                 .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2) + ')'; });
 
@@ -199,7 +196,7 @@
                 .attr('transform', 'translate(' + colLabel + ', ' + topSidebarMargin + ')');
 
             g_label.append('text')
-                .style('font-size', '13px')
+                .style('font-size', '14.5px')
                 .style('font-weight', 600)
                 .text('# of Schools')
                 .attr('transform', 'translate(0, -15)');
@@ -216,7 +213,7 @@
                 .enter()
                 .append('text')
                 .style('text-transform', 'capitalize')
-                .style('font-size', '12px')
+                .style('font-size', '13px')
                 .attr('dy', '0.35em')
                 .attr('transform', function(d) { return 'translate(0, ' + (yBandScale(d) + (yBandScale.bandwidth() / 2)) + ')'; })
                 .text(function(d) { return d; });
@@ -236,7 +233,7 @@
                 .data(function(d) { return keys.map(function(k) { return {key: k, val: d[k]}; }); })
                 .enter()
                 .append('text')
-                .style('font-size', '12px')
+                .style('font-size', '13px')
                 .attr('dy', '0.35em')
                 .attr('transform', function(d) { return 'translate(0, ' + (yBandScale(d.key) + yBandScale.bandwidth() / 2) + ')'; })
                 .text(function(d) { return d.val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); });
@@ -250,7 +247,7 @@
                     .attr('transform', 'translate(' + cols[idx] + ', ' + topContentMargin + ')');
 
                 g_race.append('text')
-                    .style('font-size', '13px')
+                    .style('font-size', '14.5px')
                     .style('font-weight', 600)
                     .text(raceLabels[idx])
                     .attr('transform', 'translate(0, -15)');
@@ -343,7 +340,7 @@
             });
 
             $('#loc_type .btn').on('click', function() {
-                d3.selectAll('.labels text')  // update legend
+                d3.selectAll('.legend text')  // update legend
                     .data($(this).data('value') === 'pub' ? labels_pub : labels_priv)
                     .transition()
                     .duration(400)

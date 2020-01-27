@@ -44,13 +44,12 @@
         }
 
         .legend text {
-          text-anchor: end;
-          font-size: 10px;
+          font-size: 14px;
           fill: gray;
         }
 
         .label {
-          font-size: 10px;
+          font-size: 12px;
           text-anchor: middle;
         }
 
@@ -106,7 +105,7 @@
                 col1 = 250,
                 col2 = 550,
                 middleSpace = 0.1,
-                xMax = 120000,
+                xMax = 130000,
                 labels = ['Visited Public HS', 'Non-Visited Public HS'],
                 // bands = outofstate.map(function(d) { return d.label; }),
                 bands = ['100751', '218663', '126614', '155317', '186380', '215293', '181464', '201885', '106397', '166629', '196097', '139959', '110635', '110680', '110653', '199193', '110671'],
@@ -144,7 +143,7 @@
                 .enter()
                 .append('text')
                 .text(function(d) { return d.univ_name; })
-                .style('font-size', '13px')
+                .style('font-size', '14.5px')
                 .attr('dy', '0.35em')
                 .attr('transform', function(d) { return 'translate(0, ' + (yScale(d.label) + yScale.bandwidth() / 2) + ')'; });
 
@@ -152,7 +151,7 @@
                 .attr('transform', 'translate(' + col1 + ', ' + topMargin + ')');
 
             g_instate.append('text')
-                .style('font-size', '13px')
+                .style('font-size', '15px')
                 .style('font-weight', 600)
                 .style('text-anchor', 'middle')
                 .text('In-State')
@@ -189,7 +188,7 @@
                 .attr('transform', 'translate(' + col2 + ', ' + topMargin + ')');
 
             g_outofstate.append('text')
-                .style('font-size', '13px')
+                .style('font-size', '15px')
                 .style('font-weight', 900)
                 .style('text-anchor', 'middle')
                 .text('Out-of-State')
@@ -235,6 +234,7 @@
                 .text('$0k');
 
             var legend = svg.append('g')  // legend
+                .classed('legend', true)
                 .attr('transform', 'translate(0, ' + (topMargin - 70) + ')')
                 .selectAll('g')
                 .data(labels)
@@ -248,8 +248,6 @@
                 .style('fill', colorScale);
 
             legend.append('text')
-                .style('font-size', 12)
-                .style('fill', 'gray')
                 .attr('x', yBandScale.bandwidth() + 5)
                 .attr('y', yBandScale.bandwidth() / 2)
                 .attr('dy', '0.35em')

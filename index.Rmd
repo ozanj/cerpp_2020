@@ -1,5 +1,5 @@
 ---
-title: 'The Political Economy of Enrollment Management'
+title: 'Follow the Mondey'
 #subtitle: 'Off-Campus Recruiting by Public Research Universities'
 author: Ozan Jaquette
 # lib_cdn: 'https://cdn.rawgit.com/ramnathv/slidifyLibraries/master/inst/libraries'
@@ -51,7 +51,7 @@ verticalSlide <- 11
 ```
 
 # Follow the Money
-## The Political Economy of Enrollment Management at Public Research Universities
+## Recruiting and the Enrollment Priorities of Public Research Universities
 
 <p class='author'>Ozan Jaquette</p>
 <p class='affiliation'>University of California, Los Angeles</p>
@@ -79,34 +79,16 @@ This research was made possible by funding from the following sources:
 - __American Educational Research Association__ (Dissertation Grant)
 - __UCLA Office of Equity, Diversity, and Inclusion__ (Faculty Career Development Award)
 
----
 
 <!--
 
 - Universities expend substantial resources identifying, recruiting prospects `r citep(bib['RN4402'])`
--->
 
-# Motivation
-## Policy discourse on college access inequality
+- University rhetoric: 
+- "Despite state disinvestment and student deficiencies, we care about access 
 
-The 2014 White House "Access Summit" 
-- `r citet(bib['RN4016'])` review of causes of unequal college access
-    - "achievement gap", "under-matching"; place responsibility on students, K-12 schools
-- `r citet(bib['RN4017'])` asks universities for *Commitments to Action on College Opportunity*
-    - Universities pledge "action plans" (e.g., need-based financial aid, "outreach", holistic admission)
-    - "Despite state disinvestment and student deficiencies, we care about access more than ever"
-
-<br>
-Why study marketing, recruiting
 - Universities expend substantial resources identifying, recruiting prospects
-- Internal resource allocation better indicator of organizational priorities than rhetoric, policies
-- Knowing which student populations targeted by recruiting efforts indicates enrollment priorities
 
-<br>
-Enrollment management is an opaque industry
-- Research goal: document concrete EM behaviors, so that this can be part of policy discussion
-
---- 
 
 # Motivation
 ## Why study recruiting
@@ -126,10 +108,35 @@ Research focus
 - **Analytic focus**
     - Income; race; academic achievement; in-state vs. out-of-state
 
+-->
+
+---
+
+# Motivation
+## Policy discourse on college access inequality
+
+The 2014 White House "Access Summit" 
+- `r citet(bib['RN4016'])` reviews causes of access inequality
+    - Demand-side explanations; e.g., "achievement gap", "under-matching"
+    - Place responsibility on students, K-12 schools
+- `r citet(bib['RN4017'])` asks universities for *Commitments to Action on College Opportunity*
+    - Universities pledge "action plans" (e.g., need-based financial aid, "outreach", holistic admission)
+
+
+<br>
+Why study marketing, recruiting
+- Enrollment management is an opaque industry
+    - Rhetoric: "despite state disinvestment (and student deficiences), we care about access"
+- Internal resource allocation better indicator of organizational priorities than rhetoric, policies
+- Knowing which student populations targeted by recruiting efforts indicates enrollment priorities
+
+<br>
+Research goal: 
+- Document enrollment management behaviors, push policy discourse to consider supply-side
 
 --- &twocol
 
-# Motivation
+# Background
 ## The "enrollment funnel"
 
 *** =left
@@ -140,22 +147,24 @@ Research focus
 
 **Interventions along the funnel**
 * Identify prospects
-    - Buy "student lists" from College Board/ACT
+    - e.g., buy "student lists"
 * Recruit prospects remotely
     * Email, mail, text, etc.
 * Recruit prospects in-person
-    * **Off-campus recruiting visits** (e.g., high school visits, college fairs)
-    * Campus visits
+    * **Off-campus visits** (e.g., schools, fairs)
+    * On-campus visits
     * Other "outreach"
-* Solicit inquiries, stealth applicants
-    * Social media, advertising
+* Marketing/ads (inquiries, stealth applicants)
+    * Search engine marketing
+    * Social media marketing
+    * Traditional advertising
 * Convert admits to enrollees
-    * Financial aid leveraging
+    * e.g., financial aid leveraging
 
 --- 
 
 # Conceptual Framing
-## The sieve and the market
+## The behavior of US universities, according to Mitchell Stevens
 
 <!--
 functions of higher education: "sieve," "incubator," "temple," and "hub"
@@ -167,16 +176,16 @@ Under "national service," the sieve serves redistribution. Under "market," sieve
 
 The "sieve" function of higher education `r citep(bib['RN2377'])`
 - Higher education allocates people to different occupational/social positions
-- Dual character of education [CITE WEBER], simultaneously serves
+- Dual character of education `r citep(bib['RN1297'])`, simultaneously serves
     - Social mobility: redistributing access to privileged positions
     - Social reproduction: privileged families get access to universities that confer the best positions
     
 <br>
 Political economy of US higher education citep(bib['RN4517'])`:
-- "National service" configuration
+- "National service" orientation
     - Expansion of federal and state investment in higher ed
     - Creation of state higher education systems
-- "Market" configuration
+- "Market" orientation
     - Demographic contraction; state disinvestment
     - Transportation, technology advances, national guidebooks and rankings create national market
 
@@ -191,6 +200,7 @@ Political economy of US higher education citep(bib['RN4517'])`:
 
 **Iron triangle of enrollment management**
 
+<br>
 <img src="assets/images/iron_triangle.png" alt="Enrollment Funnel" style="width:80%;float:left;">
 
 *** =right
@@ -212,41 +222,94 @@ Political economy of US higher education citep(bib['RN4517'])`:
 * The "sieve" serves
     - Social reproduction (paying customers)
 
---- 
-
-
-# Conceptual Framing
-## The political economy of enrollment management
-
-Introduce iron triangle; 
-
 
 --- 
 
 # Empirical context
-## Causes and consequences of nonresident enrollment growth
-
---- 
-
-# Empirical context
-## State funding and tuition revenue
+## State funding and tuition revenue, sample institutions in 2016-17
 
 <img src='./assets/images/scatterplot_revenue_fte.png' style="width:60%; border:1px solid #666;"></img>
 
 --- 
 
+# Empirical context
+## Nonresident enrollment growth at public research universities
+
+Effect of state appropriations on nonresident enrollment `r citep(bib['RN3753'])`
+- Decline in state appropriations leads to nonresident enrollment growth
+- *Not quite causal*
+
+<br>
+
+Nonresident enrollment growth and socioeconomic/racial composition `r citep(bib['RN3685'])`
+- Growth in percent nonresident associated with decline in percent Pell, percent Black/Latinx
+- *Descriptive*
+
+<br>
+
+Crowd out? Effect of nonresident enrollment on resident enrollment `r citep(bib['RN4290'])`
+- No effect for population of public research; crowd out at prestigious public research
+- *Plausibly causal*
+
+<br>
+
+Effect of resident and nonresident enrollment on faculty hiring `r citep(bib['RN4492'])`
+- Nonresident enrollment has strong positive relationship with tenure-line faculty hiring
+- *Not quite causal*
+
+--- &twocol
+
 # Research overview
 ## Off-campus recruiting visits by public research universities
 
-<!--
-overview of the project, data collection, etc
+*** =left
 
-Add links to other/more detailed presentations/publications
--->
+**Data collection**
+
+* Method
+    - Web-scrape admissions websites
+    - Public records requests (some univs)
+* Criteria to be included in data collection
+    1. Post visits on admissions websites
+    2. Organizational type
+* Data collection sample
+    - 54 public research universities
+    - 49 private research universities
+    - 42 selective private liberal arts
+* Data collection period
+    - 1/1/2017 to 12/31/2017
+    - Ongoing collection, larger sample
+    
+*** =right
+
+**Sample data**
+
+<img src="assets/images/southcarolina.png" style="width:65%;float:left;">
 
 ---
 
-# Data and Methods
+
+
+# Research methods
+## Defining events
+
+**"Off-campus recruiting events" defined as off-campus events hosted by paid staff/consultants focused on soliciting applications**
+
+<br>
+- Event type
+    - Include: college fairs, high school visits, community college visits,
+counselor events
+    - Exclude: admitted or committed student events, interviews
+- Event host
+    - Include: paid admissions staff or consultants (e.g. regional recruiters)
+    - Exclude: alumni, student volunteers
+- Event location
+    - Any off-campus location
+    - e.g., high school, community college, hotel, convention center, cafe, etc.
+
+---
+
+# Research methods
 ## Summary of Data Collection Sources and Quality Checks Performed
 
 <div class="table-wrapper">
